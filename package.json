@@ -1,7 +1,11 @@
 {
 	"name": "voting-app",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Voting app for FreeCodeCamp project",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/edward-hong/voting-app.git"
+	},
 	"main": "index.js",
 	"engines": {
 		"node": "8.4.0",
