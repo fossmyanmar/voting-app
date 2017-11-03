@@ -5,8 +5,7 @@ import {
 	NavbarToggler,
 	NavbarBrand,
 	Nav,
-	NavItem,
-	NavLink
+	NavItem
 } from 'reactstrap'
 
 export default class Header extends Component {
