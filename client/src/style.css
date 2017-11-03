@@ -1,0 +1,29 @@
+.btn-facebook {
+	color: #4060b7;
+	border-color: #4060b7;
+}
+
+.btn-facebook:hover {
+	background-color: #4060b7;
+	border-color: #4060b7;
+}
+
+.btn-google {
+	color: #ec371b;
+	border-color: #ec371b;
+}
+
+.btn-google:hover {
+	background-color: #ec371b;
+	border-color: #ec371b;
+}
+
+.btn-github {
+	color: #24292f;
+	border-color: #24292f;
+}
+
+.btn-github:hover {
+	background-color: #24292f;
+	border-color: #24292f;
+}
