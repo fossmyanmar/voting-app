@@ -16,7 +16,7 @@ export default class Header extends Component {
 	toggle = () => this.setState({ isOpen: !this.state.isOpen })
 	render() {
 		return (
-			<Navbar color="faded" light expand="md">
+			<Navbar light expand="md">
 				<NavbarBrand href="/">VoteMole</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} />
 				<Collapse isOpen={this.state.isOpen} navbar>
