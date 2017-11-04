@@ -7,13 +7,12 @@ import {
 	NavbarBrand,
 	Nav,
 	NavItem,
-	NavLink,
-	Modal,
-	ModalBody,
-	Button
+	NavLink
 } from 'reactstrap'
 
 import * as actions from '../actions'
+
+import LoginModal from './LoginModal'
 
 const Header = ({
 	auth,
@@ -51,19 +50,7 @@ const Header = ({
 					</Nav>
 				</Collapse>
 			</Navbar>
-			<Modal isOpen={showModal} toggle={toggleModal}>
-				<ModalBody>
-					<Button href="/auth/facebook" className="btn-facebook" outline block>
-						Login with Facebook
-					</Button>
-					<Button href="/auth/google" className="btn-google" outline block>
-						Login with Google
-					</Button>
-					<Button href="/auth/github" className="btn-github" outline block>
-						Login with Github
-					</Button>
-				</ModalBody>
-			</Modal>
+			<LoginModal isOpen={showModal} toggle={toggleModal} />
 		</div>
 	)
 }
