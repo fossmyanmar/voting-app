@@ -8,10 +8,6 @@ import {
 	Nav,
 	NavItem,
 	NavLink,
-	NavDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem,
 	Modal,
 	ModalBody,
 	Button
@@ -20,16 +16,12 @@ import {
 class Header extends Component {
 	state = {
 		isOpen: false,
-		modal: false,
-		dropdownOpen: false
+		modal: false
 	}
 
 	toggle = () => this.setState({ isOpen: !this.state.isOpen })
 
 	toggleModal = () => this.setState({ modal: !this.state.modal })
-
-	toggleDropDown = () =>
-		this.setState({ dropdownOpen: !this.state.dropdownOpen })
 
 	renderNavItems = () => {
 		switch (this.props.auth) {
@@ -42,20 +34,11 @@ class Header extends Component {
 					</NavLink>
 				)
 			default:
-				return (
-					<NavDropdown
-						isOpen={this.state.dropdownOpen}
-						toggle={this.toggleDropDown}>
-						<DropdownToggle nav caret>
-							{this.props.auth.name}
-						</DropdownToggle>
-						<DropdownMenu>
-							<DropdownItem>
-								<NavLink href="auth/logout">Logout</NavLink>
-							</DropdownItem>
-						</DropdownMenu>
-					</NavDropdown>
-				)
+				return [
+					<NavLink key="logout" eventkey="logout" href="/auth/logout">
+						<NavItem>Logout</NavItem>
+					</NavLink>
+				]
 		}
 	}
 
@@ -73,7 +56,11 @@ class Header extends Component {
 				</Navbar>
 				<Modal isOpen={this.state.modal} toggle={this.toggleModal}>
 					<ModalBody>
-						<Button className="btn-facebook" outline block>
+						<Button
+							href="/auth/facebook"
+							className="btn-facebook"
+							outline
+							block>
 							Login with Facebook
 						</Button>
 						<Button href="/auth/google" className="btn-google" outline block>

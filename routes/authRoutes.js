@@ -14,6 +14,16 @@ auth.get('/google/callback', passport.authenticate('google'), (req, res) => {
 	res.redirect('/')
 })
 
+auth.get('/facebook', passport.authenticate('facebook'))
+
+auth.get(
+	'/facebook/callback',
+	passport.authenticate('facebook'),
+	(req, res) => {
+		res.redirect('/')
+	}
+)
+
 auth.get('/current_user', (req, res) => {
 	res.send(req.user)
 })
