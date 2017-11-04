@@ -1,3 +1,4 @@
 import { fetchUser } from './authActions'
+import { toggleDropdown, toggleModal } from './toggleActions'
 
-export { fetchUser }
+export { fetchUser, toggleDropdown, toggleModal }

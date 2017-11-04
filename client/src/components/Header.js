@@ -13,23 +13,21 @@ import {
 	Button
 } from 'reactstrap'
 
-class Header extends Component {
-	state = {
-		isOpen: false,
-		modal: false
-	}
+import * as actions from '../actions'
 
-	toggle = () => this.setState({ isOpen: !this.state.isOpen })
-
-	toggleModal = () => this.setState({ modal: !this.state.modal })
-
-	renderNavItems = () => {
-		switch (this.props.auth) {
+const Header = ({
+	auth,
+	toggle: { showDropdown, showModal },
+	toggleDropdown,
+	toggleModal
+}) => {
+	const renderNavItems = () => {
+		switch (auth) {
 			case null:
 				return
 			case false:
 				return (
-					<NavLink href="#" onClick={this.toggleModal}>
+					<NavLink href="#" onClick={toggleModal}>
 						<NavItem>Login</NavItem>
 					</NavLink>
 				)
@@ -42,40 +40,34 @@ class Header extends Component {
 		}
 	}
 
-	render() {
-		return (
-			<div>
-				<Navbar light expand="md">
-					<NavbarBrand href="/">VoteMole</NavbarBrand>
-					<NavbarToggler onClick={this.toggle} />
-					<Collapse isOpen={this.state.isOpen} navbar>
-						<Nav className="ml-auto" navbar>
-							{this.renderNavItems()}
-						</Nav>
-					</Collapse>
-				</Navbar>
-				<Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-					<ModalBody>
-						<Button
-							href="/auth/facebook"
-							className="btn-facebook"
-							outline
-							block>
-							Login with Facebook
-						</Button>
-						<Button href="/auth/google" className="btn-google" outline block>
-							Login with Google
-						</Button>
-						<Button href="/auth/github" className="btn-github" outline block>
-							Login with Github
-						</Button>
-					</ModalBody>
-				</Modal>
-			</div>
-		)
-	}
+	return (
+		<div>
+			<Navbar light expand="md">
+				<NavbarBrand href="/">VoteMole</NavbarBrand>
+				<NavbarToggler onClick={toggleDropdown} />
+				<Collapse isOpen={showDropdown} navbar>
+					<Nav className="ml-auto" navbar>
+						{renderNavItems()}
+					</Nav>
+				</Collapse>
+			</Navbar>
+			<Modal isOpen={showModal} toggle={toggleModal}>
+				<ModalBody>
+					<Button href="/auth/facebook" className="btn-facebook" outline block>
+						Login with Facebook
+					</Button>
+					<Button href="/auth/google" className="btn-google" outline block>
+						Login with Google
+					</Button>
+					<Button href="/auth/github" className="btn-github" outline block>
+						Login with Github
+					</Button>
+				</ModalBody>
+			</Modal>
+		</div>
+	)
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
+const mapStateToProps = ({ auth, toggle }) => ({ auth, toggle })
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, actions)(Header)
