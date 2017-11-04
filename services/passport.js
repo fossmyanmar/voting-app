@@ -10,8 +10,8 @@ passport.serializeUser((user, done) => {
 	done(null, user.id)
 })
 
-passport.deserializeUser((user, done) => {
-	User.findById(user.id).then(user => {
+passport.deserializeUser((id, done) => {
+	User.findById(id).then(user => {
 		done(null, user)
 	})
 })
@@ -25,13 +25,12 @@ passport.use(
 			proxy: true
 		},
 		(accessToken, refreshToken, profile, done) => {
-			User.findOne({ 'google.id': profile.id }).then(existingUser => {
+			User.findOne({ profileID: profile.id }).then(existingUser => {
 				if (existingUser) {
 					done(null, existingUser)
 				} else {
 					new User({
 						profileID: profile.id,
-						token: accessToken,
 						name: profile.displayName
 					})
 						.save()

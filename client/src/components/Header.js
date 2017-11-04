@@ -38,7 +38,7 @@ export default class Header extends Component {
 						<Button className="btn-facebook" outline block>
 							Login with Facebook
 						</Button>
-						<Button className="btn-google" outline block>
+						<Button href="/auth/google" className="btn-google" outline block>
 							Login with Google
 						</Button>
 						<Button className="btn-github" outline block>

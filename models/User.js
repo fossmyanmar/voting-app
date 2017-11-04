@@ -3,7 +3,6 @@ const { Schema } = mongoose
 
 const userSchema = new Schema({
 	profileID: String,
-	token: String,
 	name: String
 })
 

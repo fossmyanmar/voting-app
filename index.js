@@ -9,6 +9,7 @@ const keys = require('./config/keys')
 const auth = require('./routes/authRoutes')
 
 require('./models/User')
+require('./services/passport')
 
 mongoose.connect(keys.mongoURI, { useMongoClient: true })
 mongoose.Promise = global.Promise

@@ -1,11 +1,14 @@
 const passport = require('passport')
 const express = require('express')
 
-const User = require('../models/User')
-
 const auth = express.Router()
 
-auth.get('/google', passport.authenticate('google'))
+auth.get(
+	'/google',
+	passport.authenticate('google', {
+		scope: ['profile', 'email']
+	})
+)
 
 auth.get('/google/callback', passport.authenticate('google'), (req, res) => {
 	res.redirect('/')
