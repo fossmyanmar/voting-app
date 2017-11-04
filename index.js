@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 
 const keys = require('./config/keys')
 
+const auth = require('./routes/authRoutes')
+
 require('./models/User')
 
 mongoose.connect(keys.mongoURI, { useMongoClient: true })
@@ -25,6 +27,8 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use('/auth', auth)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
