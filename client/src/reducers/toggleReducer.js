@@ -1,14 +1,14 @@
-import { TOGGLE_DROPDOWN, TOGGLE_MODAL } from '../actions/types'
+import { TOGGLE_DROPDOWN, TOGGLE_LOGIN_MODAL } from '../actions/types'
 
 export default (
-	state = { showDropdown: false, showModal: false },
+	state = { showDropdown: false, showLoginModal: false },
 	{ type }
 ) => {
 	switch (type) {
 		case TOGGLE_DROPDOWN:
 			return { ...state, showDropdown: !state.showDropdown }
-		case TOGGLE_MODAL:
-			return { ...state, showModal: !state.showModal }
+		case TOGGLE_LOGIN_MODAL:
+			return { ...state, showLoginModal: !state.showLoginModal }
 		default:
 			return state
 	}

@@ -16,9 +16,9 @@ import LoginModal from './LoginModal'
 
 const Header = ({
 	auth,
-	toggle: { showDropdown, showModal },
+	toggle: { showDropdown, showLoginModal },
 	toggleDropdown,
-	toggleModal
+	toggleLoginModal
 }) => {
 	const renderNavItems = () => {
 		switch (auth) {
@@ -26,7 +26,7 @@ const Header = ({
 				return
 			case false:
 				return (
-					<NavLink href="#" onClick={toggleModal}>
+					<NavLink href="#" onClick={toggleLoginModal}>
 						<NavItem>Login</NavItem>
 					</NavLink>
 				)
@@ -50,7 +50,7 @@ const Header = ({
 					</Nav>
 				</Collapse>
 			</Navbar>
-			<LoginModal isOpen={showModal} toggle={toggleModal} />
+			<LoginModal isOpen={showLoginModal} toggle={toggleLoginModal} />
 		</div>
 	)
 }
