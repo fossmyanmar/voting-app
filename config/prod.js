@@ -5,5 +5,6 @@ module.exports = {
 	facebookClientID: process.env.FACEBOOK_CLIENT_ID,
 	facebookSecretKey: process.env.FACEBOOK_SECRET_KEY,
 	githubClientID: process.env.GITHUB_CLIENT_ID,
-	githubSecretKey: process.env.GITHUB_SECRET_KEY
+	githubSecretKey: process.env.GITHUB_SECRET_KEY,
+	cookieKey: process.env.COOKIE_KEY
 }
