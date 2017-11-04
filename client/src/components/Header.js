@@ -13,12 +13,14 @@ import {
 import * as actions from '../actions'
 
 import LoginModal from './LoginModal'
+import PollModal from './PollModal'
 
 const Header = ({
 	auth,
-	toggle: { showDropdown, showLoginModal },
+	toggle: { showDropdown, showLoginModal, showPollModal },
 	toggleDropdown,
-	toggleLoginModal
+	toggleLoginModal,
+	togglePollModal
 }) => {
 	const renderNavItems = () => {
 		switch (auth) {
@@ -32,6 +34,13 @@ const Header = ({
 				)
 			default:
 				return [
+					<NavLink
+						key="add_poll"
+						eventKey="add_poll"
+						href="#"
+						onClick={togglePollModal}>
+						<NavItem>Add Poll</NavItem>
+					</NavLink>,
 					<NavLink key="logout" eventkey="logout" href="/auth/logout">
 						<NavItem>Logout</NavItem>
 					</NavLink>
@@ -51,6 +60,7 @@ const Header = ({
 				</Collapse>
 			</Navbar>
 			<LoginModal isOpen={showLoginModal} toggle={toggleLoginModal} />
+			<PollModal isOpen={showPollModal} toggle={togglePollModal} />
 		</div>
 	)
 }
