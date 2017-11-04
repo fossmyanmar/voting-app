@@ -24,6 +24,12 @@ auth.get(
 	}
 )
 
+auth.get('/github', passport.authenticate('github'))
+
+auth.get('/github/callback', passport.authenticate('github'), (req, res) => {
+	res.redirect('/')
+})
+
 auth.get('/current_user', (req, res) => {
 	res.send(req.user)
 })

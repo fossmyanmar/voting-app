@@ -66,7 +66,7 @@ class Header extends Component {
 						<Button href="/auth/google" className="btn-google" outline block>
 							Login with Google
 						</Button>
-						<Button className="btn-github" outline block>
+						<Button href="/auth/github" className="btn-github" outline block>
 							Login with Github
 						</Button>
 					</ModalBody>

@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
+const GithubStrategy = require('passport-github').Strategy
 const mongoose = require('mongoose')
 
 const keys = require('../config/keys')
@@ -17,6 +18,20 @@ passport.deserializeUser((id, done) => {
 	})
 })
 
+const login = (accessToken, refreshToken, profile, done) => {
+	User.findOne({ profileID: profile.id }).then(existingUser => {
+		if (existingUser) {
+			done(null, existingUser)
+		} else {
+			new User({
+				profileID: profile.id
+			})
+				.save()
+				.then(user => done(null, user))
+		}
+	})
+}
+
 passport.use(
 	new GoogleStrategy(
 		{
@@ -25,19 +40,7 @@ passport.use(
 			callbackURL: '/auth/google/callback',
 			proxy: true
 		},
-		(accessToken, refreshToken, profile, done) => {
-			User.findOne({ profileID: profile.id }).then(existingUser => {
-				if (existingUser) {
-					done(null, existingUser)
-				} else {
-					new User({
-						profileID: profile.id
-					})
-						.save()
-						.then(user => done(null, user))
-				}
-			})
-		}
+		login
 	)
 )
 
@@ -50,18 +53,18 @@ passport.use(
 			profileFields: ['id', 'name'],
 			proxy: true
 		},
-		(accessToken, refreshToken, profile, done) => {
-			User.findOne({ profileID: profile.id }).then(existingUser => {
-				if (existingUser) {
-					done(null, existingUser)
-				} else {
-					new User({
-						profileID: profile.id
-					})
-						.save()
-						.then(user => done(null, user))
-				}
-			})
-		}
+		login
+	)
+)
+
+passport.use(
+	new GithubStrategy(
+		{
+			clientID: keys.githubClientID,
+			clientSecret: keys.githubSecretKey,
+			callbackURL: '/auth/github/callback',
+			proxy: true
+		},
+		login
 	)
 )
