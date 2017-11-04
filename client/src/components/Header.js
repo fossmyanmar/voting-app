@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
 	Collapse,
 	Navbar,
@@ -7,18 +8,57 @@ import {
 	Nav,
 	NavItem,
 	NavLink,
+	NavDropdown,
+	DropdownToggle,
+	DropdownMenu,
+	DropdownItem,
 	Modal,
 	ModalBody,
 	Button
 } from 'reactstrap'
 
-export default class Header extends Component {
+class Header extends Component {
 	state = {
 		isOpen: false,
-		modal: false
+		modal: false,
+		dropdownOpen: false
 	}
+
 	toggle = () => this.setState({ isOpen: !this.state.isOpen })
+
 	toggleModal = () => this.setState({ modal: !this.state.modal })
+
+	toggleDropDown = () =>
+		this.setState({ dropdownOpen: !this.state.dropdownOpen })
+
+	renderNavItems = () => {
+		switch (this.props.auth) {
+			case null:
+				return
+			case false:
+				return (
+					<NavLink href="#" onClick={this.toggleModal}>
+						<NavItem>Login</NavItem>
+					</NavLink>
+				)
+			default:
+				return (
+					<NavDropdown
+						isOpen={this.state.dropdownOpen}
+						toggle={this.toggleDropDown}>
+						<DropdownToggle nav caret>
+							{this.props.auth.name}
+						</DropdownToggle>
+						<DropdownMenu>
+							<DropdownItem>
+								<NavLink href="auth/logout">Logout</NavLink>
+							</DropdownItem>
+						</DropdownMenu>
+					</NavDropdown>
+				)
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -27,9 +67,7 @@ export default class Header extends Component {
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
-							<NavLink href="#" onClick={this.toggleModal}>
-								<NavItem>Login</NavItem>
-							</NavLink>
+							{this.renderNavItems()}
 						</Nav>
 					</Collapse>
 				</Navbar>
@@ -50,3 +88,7 @@ export default class Header extends Component {
 		)
 	}
 }
+
+const mapStateToProps = ({ auth }) => ({ auth })
+
+export default connect(mapStateToProps)(Header)
