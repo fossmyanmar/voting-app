@@ -17,13 +17,23 @@
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
-	"keywords": ["MongoDB", "Express", "React", "Node", "MERN", "Chingu"],
+	"keywords": [
+		"MongoDB",
+		"Express",
+		"React",
+		"Node",
+		"MERN",
+		"Chingu"
+	],
 	"author": "Edward Hong",
 	"license": "ISC",
 	"dependencies": {
 		"concurrently": "^3.5.0",
 		"express": "^4.16.1",
 		"mongoose": "^4.12.0",
-		"nodemon": "^1.12.1"
+		"nodemon": "^1.12.1",
+		"passport": "^0.4.0",
+		"passport-facebook": "^2.1.1",
+		"passport-google-oauth20": "^1.0.0"
 	}
 }
