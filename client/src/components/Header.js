@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
 	Collapse,
 	Navbar,
@@ -34,6 +35,9 @@ const Header = ({
 				)
 			default:
 				return [
+					<NavLink key="my_polls" tag={Link} to="/my_polls">
+						<NavItem>My Polls</NavItem>
+					</NavLink>,
 					<NavLink key="add_poll" href="#" onClick={togglePollModal}>
 						<NavItem>Add Poll</NavItem>
 					</NavLink>,
@@ -47,7 +51,9 @@ const Header = ({
 	return (
 		<div>
 			<Navbar light expand="md">
-				<NavbarBrand href="/">VoteMole</NavbarBrand>
+				<NavbarBrand tag={Link} to="/">
+					VoteMole
+				</NavbarBrand>
 				<NavbarToggler onClick={toggleDropdown} />
 				<Collapse isOpen={showDropdown} navbar>
 					<Nav className="ml-auto" navbar>

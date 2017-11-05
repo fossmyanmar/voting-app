@@ -7,6 +7,7 @@ import * as actions from '../actions'
 import Home from './Home'
 import Header from './Header'
 import PollDetails from './PollDetails'
+import MyPolls from './MyPolls'
 
 class App extends Component {
 	componentDidMount() {
@@ -18,7 +19,8 @@ class App extends Component {
 				<div>
 					<Header />
 					<Route exact path="/" component={Home} />
-					<Route path="/:id" component={PollDetails} />
+					<Route exact path="/my_polls" component={MyPolls} />
+					<Route path="/poll/:id" component={PollDetails} />
 					<Alert effect="slide" timeout={4000} />
 				</div>
 			</BrowserRouter>

@@ -14,7 +14,7 @@ class Home extends Component {
 		return this.props.poll
 			? this.props.poll.map((poll, i) => (
 					<ListGroupItem className="poll-list-item" key={i}>
-						<Link className="poll-link" to={`/${poll.id}`}>
+						<Link className="poll-link" to={`/poll/${poll.id}`}>
 							{poll.pollQuestion}
 						</Link>
 					</ListGroupItem>
