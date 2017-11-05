@@ -1,9 +1,11 @@
 const express = require('express')
+
+const requireLogin = require('../middlewares/requireLogin')
 const Poll = require('../models/Poll')
 
 const poll = express.Router()
 
-poll.post('/submit', (req, res) => {
+poll.post('/submit', requireLogin, (req, res) => {
 	Poll.findOne({
 		userID: req.body.userID,
 		pollQuestion: req.body.pollQuestion
