@@ -4,9 +4,9 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import Home from './Home'
 import Header from './Header'
-
-const Landing = () => <div>Landing Page</div>
+import PollDetails from './PollDetails'
 
 class App extends Component {
 	componentDidMount() {
@@ -17,8 +17,9 @@ class App extends Component {
 			<BrowserRouter>
 				<div>
 					<Header />
-					<Route path="/" component={Landing} />
-					<Alert effect="slide" timeout="4000" />
+					<Route exact path="/" component={Home} />
+					<Route path="/:id" component={PollDetails} />
+					<Alert effect="slide" timeout={4000} />
 				</div>
 			</BrowserRouter>
 		)
