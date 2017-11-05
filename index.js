@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const keys = require('./config/keys')
 
 const auth = require('./routes/authRoutes')
+const poll = require('./routes/pollRoutes')
 
 require('./models/User')
 require('./services/passport')
@@ -30,6 +31,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/auth', auth)
+app.use('/poll', poll)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const userSchema = new Schema({
-	profileID: String,
-	name: String
+	profileID: String
 })
 
 const Users = mongoose.model('user', userSchema)

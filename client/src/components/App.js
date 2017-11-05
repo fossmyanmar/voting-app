@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Alert from 'react-s-alert'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -17,6 +18,7 @@ class App extends Component {
 				<div>
 					<Header />
 					<Route path="/" component={Landing} />
+					<Alert effect="slide" timeout="4000" />
 				</div>
 			</BrowserRouter>
 		)

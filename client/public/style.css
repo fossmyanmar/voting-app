@@ -77,3 +77,35 @@
 .input-skill {
 	margin-bottom: 3px;
 }
+
+.s-alert-box {
+	border-radius: 0.3rem;
+}
+
+.s-alert-error {
+	background-color: #fff !important;
+	color: #dc3545 !important;
+	border: 1px solid #dc3545;
+}
+
+.s-alert-error .s-alert-close::before,
+.s-alert-error .s-alert-close::after {
+	background: #dc3545 !important;
+}
+
+.s-alert-success {
+	background-color: #fff !important;
+	color: #00b55b !important;
+	border: 1px solid #00b55b;
+}
+
+.s-alert-success .s-alert-close::before,
+.s-alert-success .s-alert-close::after {
+	background: #00b55b !important;
+}
+
+.s-alert-box-inner {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}

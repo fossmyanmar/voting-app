@@ -1,4 +1,10 @@
 import React from 'react'
+import { reduxForm, Field, FieldArray } from 'redux-form'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import axios from 'axios'
+import * as actions from '../actions'
+import Alert from 'react-s-alert'
 import {
 	Modal,
 	ModalHeader,
@@ -7,8 +13,6 @@ import {
 	Button,
 	Form
 } from 'reactstrap'
-import { reduxForm, Field, FieldArray } from 'redux-form'
-import { connect } from 'react-redux'
 
 import RenderInput from './RenderInput'
 import RenderOptions from './RenderOptions'
@@ -19,15 +23,39 @@ const PollModal = ({
 	handleSubmit,
 	pristine,
 	reset,
-	submitting
+	submitting,
+	auth,
+	history
 }) => {
 	const cancel = () => {
 		reset()
 		toggle()
 	}
 
-	const submit = values => {
-		reset()
+	const submit = ({ pollQuestion, options }) => {
+		const poll = {
+			userID: auth._id,
+			pollQuestion: pollQuestion,
+			pollOptions: options.map(option => {
+				return {
+					name: option,
+					quantity: 0
+				}
+			})
+		}
+		axios
+			.post('/poll/submit', poll)
+			.then(({ data }) => {
+				toggle()
+				reset()
+				Alert.success('Poll submitted!')
+			})
+			.catch(err => {
+				toggle()
+				Alert.error(
+					'Submit failed: You already have a poll asking the same question'
+				)
+			})
 	}
 
 	return (
@@ -91,9 +119,9 @@ const validate = ({ pollQuestion, options }) => {
 	return errors
 }
 
-const mapStateToProps = ({ form }) => ({ form })
+const mapStateToProps = ({ form, auth }) => ({ form, auth })
 
 export default reduxForm({
 	form: 'add_poll',
 	validate
-})(connect(mapStateToProps)(PollModal))
+})(connect(mapStateToProps, actions)(withRouter(PollModal)))
