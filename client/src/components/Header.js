@@ -34,14 +34,10 @@ const Header = ({
 				)
 			default:
 				return [
-					<NavLink
-						key="add_poll"
-						eventKey="add_poll"
-						href="#"
-						onClick={togglePollModal}>
+					<NavLink key="add_poll" href="#" onClick={togglePollModal}>
 						<NavItem>Add Poll</NavItem>
 					</NavLink>,
-					<NavLink key="logout" eventkey="logout" href="/auth/logout">
+					<NavLink key="logout" href="/auth/logout">
 						<NavItem>Logout</NavItem>
 					</NavLink>
 				]

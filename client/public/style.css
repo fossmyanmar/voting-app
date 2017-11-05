@@ -28,6 +28,29 @@
 	box-shadow: 0 0 0 3px rgba(236, 55, 27, 0.5);
 }
 
+.btn-add-option,
+.btn-remove-option,
+.btn-clear-form {
+	color: #212529;
+	border-color: #212529;
+}
+
+.btn-add-option:hover,
+.btn-add-option:active,
+.btn-remove-option:hover,
+.btn-remove-option:active,
+.btn-clear-form:hover,
+.btn-clear-form:active {
+	background-color: #212529;
+	border-color: #212529;
+}
+
+.btn-add-option:focus,
+.btn-remove-option:focus,
+.btn-clear-form:focus {
+	box-shadow: 0 0 0 3px rgba(33, 37, 41, 0.5);
+}
+
 .btn-github {
 	color: #24292f;
 	border-color: #24292f;
@@ -41,4 +64,16 @@
 
 .btn-github:focus {
 	box-shadow: 0 0 0 3px rgba(36, 41, 47, 0.5);
+}
+
+.btn-add-option {
+	margin-bottom: 10px;
+}
+
+.error {
+	color: #dc3545;
+}
+
+.input-skill {
+	margin-bottom: 3px;
 }
