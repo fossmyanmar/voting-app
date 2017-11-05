@@ -16,4 +16,8 @@ poll.post('/submit', (req, res) => {
 	})
 })
 
+poll.get('/all_polls', (req, res) => {
+	Poll.find({}).then(polls => res.send(polls))
+})
+
 module.exports = poll
