@@ -1,7 +1,27 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import * as actions from '../actions'
 
 class Home extends Component {
+	componentDidMount() {
+		this.props.allPolls()
+	}
+
+	renderPolls = () => {
+		return this.props.poll
+			? this.props.poll.map((poll, i) => (
+					<ListGroupItem className="poll-list-item" key={i}>
+						<Link className="poll-link" to={`/${poll.id}`}>
+							{poll.pollQuestion}
+						</Link>
+					</ListGroupItem>
+				))
+			: ''
+	}
+
 	render() {
 		return (
 			<Container fluid>
@@ -20,9 +40,20 @@ class Home extends Component {
 						/>
 					</Col>
 				</Row>
+				<Row className="logo-row">
+					<Col
+						lg={{ size: '6', offset: 3 }}
+						md={{ size: '8', offset: 2 }}
+						sm={{ size: '10', offset: 1 }}
+						xs="12">
+						<ListGroup>{this.renderPolls()}</ListGroup>
+					</Col>
+				</Row>
 			</Container>
 		)
 	}
 }
 
-export default Home
+const mapStateToProps = ({ poll }) => ({ poll })
+
+export default connect(mapStateToProps, actions)(Home)
