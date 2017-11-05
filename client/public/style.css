@@ -109,3 +109,11 @@
 		'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 		'Segoe UI Symbol';
 }
+
+.logo-home {
+	width: 100%;
+}
+
+.logo-row {
+	margin-top: 1.5rem;
+}
