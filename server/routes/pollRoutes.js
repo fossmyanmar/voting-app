@@ -18,6 +18,10 @@ poll.post('/submit', requireLogin, (req, res) => {
 	})
 })
 
+poll.get('/get_poll/:id', (req, res) => {
+	Poll.findById(req.params.id).then(poll => res.send(poll))
+})
+
 poll.get('/all_polls', (req, res) => {
 	Poll.find({}).then(polls =>
 		res.send(
