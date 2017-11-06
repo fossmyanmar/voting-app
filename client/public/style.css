@@ -33,6 +33,7 @@
 .btn-clear-form {
 	color: #212529;
 	border-color: #212529;
+	z-index: 4 !important;
 }
 
 .btn-add-option:hover,
