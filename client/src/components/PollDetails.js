@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-const PollDetails = ({ match }) => {
-	console.log(match)
-	return <div>{match.params.id}</div>
+class PollDetails extends Component {
+	render() {
+		return <div>{this.props.match.params.id}</div>
+	}
 }
 
 export default withRouter(PollDetails)
