@@ -129,16 +129,14 @@
 }
 
 .poll-link:hover {
-	color: #21252a;
+	color: #fff;
+	background-color: #21252a;
 	text-decoration: none;
+	transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
 .poll-list-item {
 	height: 3.5rem;
 	padding: 0;
-}
-
-.poll-list-item:hover {
 	border-color: #21252a;
-	z-index: 1;
 }
