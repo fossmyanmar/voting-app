@@ -12,19 +12,12 @@
 		"npm": "5.4.2"
 	},
 	"scripts": {
-		"start": "node index.js",
-		"server": "nodemon index.js",
+		"start": "node server/index.js",
+		"server": "nodemon server/index.js",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
-	"keywords": [
-		"MongoDB",
-		"Express",
-		"React",
-		"Node",
-		"MERN",
-		"Chingu"
-	],
+	"keywords": ["MongoDB", "Express", "React", "Node", "MERN", "Chingu"],
 	"author": "Edward Hong",
 	"license": "ISC",
 	"dependencies": {
