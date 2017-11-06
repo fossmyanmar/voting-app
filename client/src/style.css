@@ -1,0 +1,137 @@
+.btn-facebook {
+	color: #4060b7;
+	border-color: #4060b7;
+}
+
+.btn-facebook:hover,
+.btn-facebook:hover {
+	background-color: #4060b7;
+	border-color: #4060b7;
+}
+
+.btn-facebook:focus {
+	box-shadow: 0 0 0 3px rgba(64, 96, 183, 0.5);
+}
+
+.btn-google {
+	color: #ec371b;
+	border-color: #ec371b;
+}
+
+.btn-google:hover,
+.btn-google:active {
+	background-color: #ec371b;
+	border-color: #ec371b;
+}
+
+.btn-google:focus {
+	box-shadow: 0 0 0 3px rgba(236, 55, 27, 0.5);
+}
+
+.btn-add-option,
+.btn-clear-form {
+	color: #212529;
+	border-color: #212529;
+}
+
+.btn-add-option:hover,
+.btn-add-option:active .btn-clear-form:hover,
+.btn-clear-form:active {
+	background-color: #212529;
+	border-color: #212529;
+}
+
+.btn-add-option:focus,
+.btn-clear-form:focus {
+	box-shadow: 0 0 0 3px rgba(33, 37, 41, 0.5);
+}
+
+.btn-github {
+	color: #24292f;
+	border-color: #24292f;
+}
+
+.btn-github:hover,
+.btn-github:active {
+	background-color: #24292f;
+	border-color: #24292f;
+}
+
+.btn-github:focus {
+	box-shadow: 0 0 0 3px rgba(36, 41, 47, 0.5);
+}
+
+.btn-add-option {
+	margin-bottom: 10px;
+}
+
+.error {
+	color: #dc3545;
+}
+
+.input-skill {
+	margin-bottom: 3px;
+}
+
+.s-alert-box {
+	border-radius: 0.3rem;
+}
+
+.s-alert-error {
+	background-color: #fff !important;
+	color: #dc3545 !important;
+	border: 1px solid #dc3545;
+}
+
+.s-alert-error .s-alert-close::before,
+.s-alert-error .s-alert-close::after {
+	background: #dc3545 !important;
+}
+
+.s-alert-success {
+	background-color: #fff !important;
+	color: #00b55b !important;
+	border: 1px solid #00b55b;
+}
+
+.s-alert-success .s-alert-close::before,
+.s-alert-success .s-alert-close::after {
+	background: #00b55b !important;
+}
+
+.s-alert-box-inner {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}
+
+.logo-home {
+	width: 100%;
+}
+
+.logo-row {
+	margin-top: 1.5rem;
+}
+
+.poll-link {
+	display: block;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #21252a;
+	line-height: 3.5rem;
+}
+
+.poll-link:hover {
+	color: #fff;
+	background-color: #21252a;
+	text-decoration: none;
+	transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.poll-list-item {
+	height: 3.5rem;
+	padding: 0;
+	border-color: #21252a;
+}
