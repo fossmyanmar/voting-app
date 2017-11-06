@@ -24,7 +24,7 @@ export default ({
 				/>
 				<InputGroupButton>
 					<Button
-						className="btn-remove-option"
+						color="danger"
 						outline
 						onClick={() => deleteOption.remove(index)}>
 						<FontAwesome size="2x" name="close" />
