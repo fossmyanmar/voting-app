@@ -1,8 +1,8 @@
-import { POLL_ALL } from '../actions/types'
+import { POLL_DATA } from '../actions/types'
 
 export default (state = null, action) => {
 	switch (action.type) {
-		case POLL_ALL:
+		case POLL_DATA:
 			return action.payload || false
 		default:
 			return state
