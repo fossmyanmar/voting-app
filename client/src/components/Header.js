@@ -49,21 +49,19 @@ const Header = ({
 	}
 
 	return (
-		<div>
-			<Navbar light expand="md">
-				<NavbarBrand tag={Link} to="/">
-					VoteMole
-				</NavbarBrand>
-				<NavbarToggler onClick={toggleDropdown} />
-				<Collapse isOpen={showDropdown} navbar>
-					<Nav className="ml-auto" navbar>
-						{renderNavItems()}
-					</Nav>
-				</Collapse>
-			</Navbar>
+		<Navbar light expand="md">
+			<NavbarBrand tag={Link} to="/">
+				VoteMole
+			</NavbarBrand>
+			<NavbarToggler onClick={toggleDropdown} />
+			<Collapse isOpen={showDropdown} navbar>
+				<Nav className="ml-auto" navbar>
+					{renderNavItems()}
+				</Nav>
+			</Collapse>
 			<LoginModal isOpen={showLoginModal} toggle={toggleLoginModal} />
 			<PollModal isOpen={showPollModal} toggle={togglePollModal} />
-		</div>
+		</Navbar>
 	)
 }
 

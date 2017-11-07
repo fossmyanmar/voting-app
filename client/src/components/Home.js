@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 class Home extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		this.props.allPolls()
 	}
 
 	renderPolls = () => {
-		return this.props.poll
+		return this.props.poll && this.props.poll.constructor === Array
 			? this.props.poll.map((poll, i) => (
 					<ListGroupItem className="poll-list-item" key={i}>
 						<Link className="poll-link" to={`/poll/${poll.id}`}>
