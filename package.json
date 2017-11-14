@@ -17,7 +17,15 @@
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
-	"keywords": ["MongoDB", "Express", "React", "Node", "MERN", "Chingu"],
+	"keywords": [
+		"MongoDB",
+		"Express",
+		"React",
+		"Node",
+		"MERN",
+		"FreeCodeCamp",
+		"Back End"
+	],
 	"author": "Edward Hong",
 	"license": "ISC",
 	"dependencies": {
