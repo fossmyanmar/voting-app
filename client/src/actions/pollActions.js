@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { POLL_ALL, POLL_DETAILS, POLL_USER } from './types'
+import { POLL_ALL, POLL_DETAILS, POLL_USER, POLL_CLEAR } from './types'
 
 export const allPolls = () => dispatch => {
 	axios.get('/poll/all_polls').then(({ status, data }) => {
@@ -34,3 +34,7 @@ export const getPoll = id => dispatch => {
 		}
 	})
 }
+
+export const clearPoll = () => ({
+	type: POLL_CLEAR
+})
