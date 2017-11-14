@@ -25,7 +25,7 @@ poll.get('/get_poll/:id', (req, res) => {
 poll.get('/get_user_polls/:id', (req, res) => {
 	Poll.find({ userID: req.params.id }).then(polls => {
 		res.send(
-			polls.send(poll => {
+			polls.map(poll => {
 				return {
 					id: poll._id,
 					pollQuestion: poll.pollQuestion
