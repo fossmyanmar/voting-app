@@ -22,6 +22,19 @@ poll.get('/get_poll/:id', (req, res) => {
 	Poll.findById(req.params.id).then(poll => res.send(poll))
 })
 
+poll.get('/get_user_polls/:id', (req, res) => {
+	Poll.find({ userID: req.params.id }).then(polls => {
+		res.send(
+			polls.send(poll => {
+				return {
+					id: poll._id,
+					pollQuestion: poll.pollQuestion
+				}
+			})
+		)
+	})
+})
+
 poll.get('/all_polls', (req, res) => {
 	Poll.find({}).then(polls =>
 		res.send(
