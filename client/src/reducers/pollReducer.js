@@ -1,4 +1,4 @@
-import { POLL_ALL, POLL_DETAILS, POLL_USER } from '../actions/types'
+import { POLL_ALL, POLL_DETAILS, POLL_USER, POLL_CLEAR } from '../actions/types'
 
 export default (state = null, { type, payload }) => {
 	switch (type) {
@@ -7,6 +7,8 @@ export default (state = null, { type, payload }) => {
 			return payload || false
 		case POLL_USER:
 			return payload
+		case POLL_CLEAR:
+			return null
 		default:
 			return state
 	}
