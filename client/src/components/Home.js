@@ -10,6 +10,10 @@ class Home extends Component {
 		this.props.allPolls()
 	}
 
+	componentWillUnmount() {
+		this.props.clearPoll()
+	}
+
 	renderPolls = () => {
 		return this.props.poll && this.props.poll.constructor === Array
 			? this.props.poll.map((poll, i) => (
