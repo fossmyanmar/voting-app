@@ -1,5 +1,5 @@
 import { fetchUser } from './authActions'
-import { allPolls, getPoll } from './pollActions'
+import { allPolls, getPoll, getMyPolls } from './pollActions'
 import {
 	toggleDropdown,
 	toggleLoginModal,
@@ -12,5 +12,6 @@ export {
 	toggleLoginModal,
 	togglePollModal,
 	allPolls,
-	getPoll
+	getPoll,
+	getMyPolls
 }
