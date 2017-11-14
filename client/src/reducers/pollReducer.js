@@ -1,12 +1,12 @@
 import { POLL_ALL, POLL_DETAILS, POLL_USER } from '../actions/types'
 
-export default (state = null, action) => {
-	switch (action.type) {
+export default (state = null, { type, payload }) => {
+	switch (type) {
 		case POLL_ALL:
 		case POLL_DETAILS:
-			return action.payload || false
+			return payload || false
 		case POLL_USER:
-			return action.payload
+			return payload
 		default:
 			return state
 	}
