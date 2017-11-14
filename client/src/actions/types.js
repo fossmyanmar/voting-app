@@ -6,3 +6,4 @@ export const TOGGLE_POLL_MODAL = 'toggle_poll_modal'
 
 export const POLL_ALL = 'poll_all'
 export const POLL_DETAILS = 'poll_details'
+export const POLL_USER = 'poll_user'
