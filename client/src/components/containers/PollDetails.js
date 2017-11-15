@@ -14,6 +14,10 @@ class PollDetails extends Component {
 		this.props.getPoll(this.props.match.params.id)
 	}
 
+	submit = values => {
+		console.log(values, this.props.poll._id)
+	}
+
 	renderGraph = () => {
 		const colors = [
 			['#e6194b', '#eb476f'],
@@ -74,7 +78,7 @@ class PollDetails extends Component {
 				<Col sm={4}>
 					<h1>{poll.pollQuestion}</h1>
 					<Form
-						onSubmit={this.props.handleSubmit(values => console.log(values))}
+						onSubmit={this.props.handleSubmit(values => this.submit(values))}
 						id="vote">
 						<Field
 							name="selection"
