@@ -11,9 +11,9 @@ import {
 	NavLink
 } from 'reactstrap'
 
-import * as actions from '../actions'
+import * as actions from '../../actions'
 
-import LoginModal from './LoginModal'
+import LoginModal from '../presentational/LoginModal'
 import PollModal from './PollModal'
 
 const Header = ({

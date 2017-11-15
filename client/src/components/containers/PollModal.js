@@ -3,7 +3,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
-import * as actions from '../actions'
+import * as actions from '../../actions'
 import Alert from 'react-s-alert'
 import {
 	Modal,
@@ -14,8 +14,8 @@ import {
 	Form
 } from 'reactstrap'
 
-import RenderInput from './RenderInput'
-import RenderOptions from './RenderOptions'
+import RenderInput from '../presentational/RenderInput'
+import RenderOptions from '../presentational/RenderOptions'
 
 const PollModal = ({
 	isOpen,

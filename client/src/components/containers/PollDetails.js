@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Doughnut } from 'react-chartjs-2'
 
-import * as actions from '../actions'
+import * as actions from '../../actions'
 
 class PollDetails extends Component {
 	componentWillMount() {

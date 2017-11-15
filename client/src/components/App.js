@@ -4,10 +4,10 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-import Home from './Home'
-import Header from './Header'
-import PollDetails from './PollDetails'
-import MyPolls from './MyPolls'
+import Home from './containers/Home'
+import Header from './containers/Header'
+import PollDetails from './containers/PollDetails'
+import MyPolls from './containers/MyPolls'
 
 class App extends Component {
 	componentDidMount() {

@@ -3,7 +3,7 @@ import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import * as actions from '../actions'
+import * as actions from '../../actions'
 
 class Home extends Component {
 	componentWillMount() {

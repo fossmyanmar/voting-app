@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
 
-import * as actions from '../actions'
+import * as actions from '../../actions'
 
 class MyPolls extends Component {
 	componentDidMount() {
