@@ -31,7 +31,7 @@ class Home extends Component {
 			<Container fluid>
 				<h1 className="text-center">VoteMole</h1>
 				<h2 className="text-center">Can You Dig It?</h2>
-				<Row className="logo-row">
+				<Row className="margin-top-15">
 					<Col
 						lg={{ size: '6', offset: 3 }}
 						md={{ size: '8', offset: 2 }}
@@ -44,7 +44,7 @@ class Home extends Component {
 						/>
 					</Col>
 				</Row>
-				<Row className="logo-row">
+				<Row className="margin-top-15">
 					<Col
 						lg={{ size: '6', offset: 3 }}
 						md={{ size: '8', offset: 2 }}

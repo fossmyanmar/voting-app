@@ -83,7 +83,7 @@ class PollDetails extends Component {
 							pollOptions={poll.pollOptions}
 							component={RenderSelect}
 						/>
-						<ButtonGroup vertical>
+						<ButtonGroup className="btn-vote" vertical>
 							<Button outline color="success">
 								Submit
 							</Button>
