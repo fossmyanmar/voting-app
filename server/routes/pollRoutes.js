@@ -48,4 +48,19 @@ poll.get('/all_polls', (req, res) => {
 	)
 })
 
+poll.put('/vote', (req, res) => {
+	Poll.findOneAndUpdate(
+		{
+			_id: req.body.id,
+			pollOptions: {
+				$elemMatch: { name: req.body.selection }
+			}
+		},
+		{ $inc: { 'pollOptions.$.quantity': 1 } },
+		{ new: true }
+	).then(poll => {
+		res.send(poll)
+	})
+})
+
 module.exports = poll

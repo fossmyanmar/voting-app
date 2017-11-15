@@ -35,8 +35,16 @@ export const getPoll = id => dispatch => {
 	})
 }
 
-export const vote = (selection, id) => {
-	console.log(selection, id)
+export const vote = (selection, id) => dispatch => {
+	selection.id = id
+	axios.put(`/poll/vote`, selection).then(({ status, data }) => {
+		if (status === 200) {
+			dispatch({
+				type: POLL_DETAILS,
+				payload: data
+			})
+		}
+	})
 }
 
 export const clearPoll = () => ({
