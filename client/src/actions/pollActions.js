@@ -35,6 +35,10 @@ export const getPoll = id => dispatch => {
 	})
 }
 
+export const vote = (selection, id) => {
+	console.log(selection, id)
+}
+
 export const clearPoll = () => ({
 	type: POLL_CLEAR
 })

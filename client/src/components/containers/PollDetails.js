@@ -15,7 +15,7 @@ class PollDetails extends Component {
 	}
 
 	submit = values => {
-		console.log(values, this.props.poll._id)
+		this.props.vote(values, this.props.poll._id)
 	}
 
 	renderGraph = () => {
