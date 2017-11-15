@@ -35,7 +35,7 @@ class MyPolls extends Component {
 		return (
 			<Container fluid>
 				<h1 className="text-center">My Polls</h1>
-				<Row className="logo-row">
+				<Row className="margin-top-15">
 					<Col
 						lg={{ size: '6', offset: 3 }}
 						md={{ size: '8', offset: 2 }}
