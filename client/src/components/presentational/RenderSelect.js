@@ -23,11 +23,6 @@ export default ({
 				{renderOptions()}
 			</Input>
 			{touched && error && <div className="error">{error}</div>}
-			<ButtonGroup vertical>
-				<Button outline color="success">
-					Submit
-				</Button>
-			</ButtonGroup>
 		</FormGroup>
 	)
 }
