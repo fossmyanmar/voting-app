@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { reduxForm, Field } from 'redux-form'
 import { Doughnut } from 'react-chartjs-2'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Form } from 'reactstrap'
 
 import * as actions from '../../actions'
+
+import RenderSelect from '../presentational/RenderSelect'
 
 class PollDetails extends Component {
 	componentWillMount() {
@@ -70,6 +73,17 @@ class PollDetails extends Component {
 			return (
 				<Col sm={4}>
 					<h1>{poll.pollQuestion}</h1>
+					<Form
+						onSubmit={this.props.handleSubmit(values => console.log(values))}
+						id="vote">
+						<Field
+							name="selection"
+							type="select"
+							label="I'd like to vote for..."
+							pollOptions={poll.pollOptions}
+							component={RenderSelect}
+						/>
+					</Form>
 				</Col>
 			)
 		}
@@ -89,4 +103,6 @@ class PollDetails extends Component {
 
 const mapStateToProps = ({ poll, form }) => ({ poll, form })
 
-export default connect(mapStateToProps, actions)(withRouter(PollDetails))
+export default reduxForm({
+	form: 'vote'
+})(connect(mapStateToProps, actions)(withRouter(PollDetails)))
