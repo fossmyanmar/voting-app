@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 import { Doughnut } from 'react-chartjs-2'
-import { Container, Row, Col, Form } from 'reactstrap'
+import { Container, Row, Col, Form, ButtonGroup, Button } from 'reactstrap'
 
 import * as actions from '../../actions'
 
@@ -83,6 +83,11 @@ class PollDetails extends Component {
 							pollOptions={poll.pollOptions}
 							component={RenderSelect}
 						/>
+						<ButtonGroup vertical>
+							<Button outline color="success">
+								Submit
+							</Button>
+						</ButtonGroup>
 					</Form>
 				</Col>
 			)
