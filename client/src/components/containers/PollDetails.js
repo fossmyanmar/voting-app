@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Doughnut } from 'react-chartjs-2'
+import { Container, Row, Col } from 'reactstrap'
 
 import * as actions from '../../actions'
 
@@ -35,6 +36,7 @@ class PollDetails extends Component {
 		]
 
 		const { poll } = this.props
+
 		if (!poll || poll.constructor === Array) {
 			return
 		} else {
@@ -59,8 +61,29 @@ class PollDetails extends Component {
 		}
 	}
 
+	renderForm = () => {
+		const { poll } = this.props
+
+		if (!poll || poll.constructor === Array) {
+			return
+		} else {
+			return (
+				<Col sm={4}>
+					<h1>{poll.pollQuestion}</h1>
+				</Col>
+			)
+		}
+	}
+
 	render() {
-		return <div>{this.renderGraph()}</div>
+		return (
+			<Container>
+				<Row>
+					{this.renderForm()}
+					<Col sm={8}>{this.renderGraph()}</Col>
+				</Row>
+			</Container>
+		)
 	}
 }
 
