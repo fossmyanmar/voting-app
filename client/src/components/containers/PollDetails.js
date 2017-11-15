@@ -87,6 +87,6 @@ class PollDetails extends Component {
 	}
 }
 
-const mapStateToProps = ({ poll }) => ({ poll })
+const mapStateToProps = ({ poll, form }) => ({ poll, form })
 
 export default connect(mapStateToProps, actions)(withRouter(PollDetails))
