@@ -106,8 +106,15 @@ class PollDetails extends Component {
 	}
 }
 
+const validate = ({ selection }) => {
+	const errors = {}
+	if (!selection) errors.selection = 'Please select an option'
+	return errors
+}
+
 const mapStateToProps = ({ poll, form }) => ({ poll, form })
 
 export default reduxForm({
-	form: 'vote'
+	form: 'vote',
+	validate
 })(connect(mapStateToProps, actions)(withRouter(PollDetails)))
