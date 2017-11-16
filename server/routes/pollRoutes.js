@@ -49,18 +49,38 @@ poll.get('/all_polls', (req, res) => {
 })
 
 poll.put('/vote', (req, res) => {
-	Poll.findOneAndUpdate(
-		{
-			_id: req.body.id,
-			pollOptions: {
-				$elemMatch: { name: req.body.selection }
-			}
-		},
-		{ $inc: { 'pollOptions.$.quantity': 1 } },
-		{ new: true }
-	).then(poll => {
-		res.send(poll)
-	})
+	if (req.body.selection === "I'd like a custom option") {
+		Poll.findOneAndUpdate(
+			{
+				_id: req.body.id,
+				'pollOptions.name': { $ne: req.body.customSelection }
+			},
+			{
+				$addToSet: {
+					pollOptions: {
+						name: req.body.customSelection,
+						quantity: 1
+					}
+				}
+			},
+			{ new: true }
+		)
+			.then(updatedPoll => res.send(updatedPoll))
+			.catch(err => res.send(err))
+	} else {
+		Poll.findOneAndUpdate(
+			{
+				_id: req.body.id,
+				pollOptions: {
+					$elemMatch: { name: req.body.selection }
+				}
+			},
+			{ $inc: { 'pollOptions.$.quantity': 1 } },
+			{ new: true }
+		).then(poll => {
+			res.send(poll)
+		})
+	}
 })
 
 module.exports = poll

@@ -133,14 +133,14 @@ class PollDetails extends Component {
 	}
 }
 
-const validate = ({ selection, customSelection }) => {
+const validate = ({ selection, customSelection }, props) => {
+	console.log(props)
 	const errors = {}
 	if (!selection) errors.selection = 'Please select an option'
 
 	if (selection === "I'd like a custom option" && !customSelection) {
 		errors.customSelection = 'Please enter your custom selection'
 	}
-
 	return errors
 }
 
