@@ -22,7 +22,7 @@ poll.get('/get_poll/:id', (req, res) => {
 	Poll.findById(req.params.id).then(poll => res.send(poll))
 })
 
-poll.get('/get_user_polls/:id', (req, res) => {
+poll.get('/get_user_polls/:id', requireLogin, (req, res) => {
 	Poll.find({ userID: req.params.id }).then(polls => {
 		res.send(
 			polls.map(poll => {
