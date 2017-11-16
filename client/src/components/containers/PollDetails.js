@@ -64,7 +64,14 @@ class PollDetails extends Component {
 				]
 			}
 
-			return <Doughnut data={dataset} />
+			return (
+				<Doughnut
+					width={60}
+					height={50}
+					data={dataset}
+					legend={{ labels: { boxWidth: 10 } }}
+				/>
+			)
 		}
 	}
 
