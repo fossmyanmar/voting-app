@@ -8,6 +8,7 @@ import { Container, Row, Col, Form, ButtonGroup, Button } from 'reactstrap'
 import * as actions from '../../actions'
 
 import RenderSelect from '../presentational/RenderSelect'
+import RenderInput from '../presentational/RenderInput'
 
 class PollDetails extends Component {
 	componentWillMount() {
@@ -94,6 +95,19 @@ class PollDetails extends Component {
 							pollOptions={poll.pollOptions}
 							component={RenderSelect}
 						/>
+						{this.props.form.vote.values &&
+						this.props.form.vote.values.selection ===
+							"I'd like a custom option" ? (
+							<Field
+								name="customSelection"
+								type="text"
+								label="Vote with my own option:"
+								placeholder="Custom option"
+								component={RenderInput}
+							/>
+						) : (
+							''
+						)}
 						<ButtonGroup className="btn-vote" vertical>
 							<Button outline color="success">
 								Submit
@@ -119,9 +133,14 @@ class PollDetails extends Component {
 	}
 }
 
-const validate = ({ selection }) => {
+const validate = ({ selection, customSelection }) => {
 	const errors = {}
 	if (!selection) errors.selection = 'Please select an option'
+
+	if (selection === "I'd like a custom option" && !customSelection) {
+		errors.customSelection = 'Please enter your custom selection'
+	}
+
 	return errors
 }
 
