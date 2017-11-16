@@ -139,3 +139,9 @@
 	padding: 0;
 	border-color: #21252a;
 }
+
+@media (max-width: 575px) {
+	.graph-container {
+		margin-top: 1.5rem;
+	}
+}

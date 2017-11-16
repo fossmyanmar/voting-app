@@ -110,7 +110,9 @@ class PollDetails extends Component {
 			<Container>
 				<Row>
 					{this.renderForm()}
-					<Col sm={8}>{this.renderGraph()}</Col>
+					<Col className="graph-container" sm={8}>
+						{this.renderGraph()}
+					</Col>
 				</Row>
 			</Container>
 		)
