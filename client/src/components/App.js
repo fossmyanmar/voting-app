@@ -9,6 +9,8 @@ import Header from './containers/Header'
 import PollDetails from './containers/PollDetails'
 import MyPolls from './containers/MyPolls'
 
+import RequireAuth from './hoc/RequireAuth'
+
 class App extends Component {
 	componentDidMount() {
 		this.props.fetchUser()
@@ -19,7 +21,7 @@ class App extends Component {
 				<div>
 					<Header />
 					<Route exact path="/" component={Home} />
-					<Route exact path="/my_polls" component={MyPolls} />
+					<Route exact path="/my_polls" component={RequireAuth(MyPolls)} />
 					<Route path="/poll/:id" component={PollDetails} />
 					<Alert effect="slide" timeout={4000} />
 				</div>
