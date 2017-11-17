@@ -37,6 +37,7 @@ class PollDetails extends Component {
 							type="select"
 							label="I'd like to vote for..."
 							pollOptions={poll.pollOptions}
+							auth={this.props.auth}
 							component={RenderSelect}
 						/>
 						{this.props.form.vote.values &&

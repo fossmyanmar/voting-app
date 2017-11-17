@@ -6,6 +6,7 @@ export default ({
 	label,
 	type,
 	pollOptions,
+	auth,
 	meta: { touched, error }
 }) => {
 	let valid
@@ -21,7 +22,7 @@ export default ({
 			<Input valid={valid} {...input} type={type}>
 				<option disabled />
 				{renderOptions()}
-				<option>I'd like a custom option</option>
+				{auth && <option>I'd like a custom option</option>}
 			</Input>
 			{touched && error && <div className="error">{error}</div>}
 		</FormGroup>
