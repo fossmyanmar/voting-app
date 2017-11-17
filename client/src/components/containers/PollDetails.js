@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 import { Doughnut } from 'react-chartjs-2'
 import { Container, Row, Col, Form, ButtonGroup, Button } from 'reactstrap'
+import Alert from 'react-s-alert'
 
 import * as actions from '../../actions'
 
@@ -16,7 +17,7 @@ class PollDetails extends Component {
 	}
 
 	submit = values => {
-		this.props.vote(values, this.props.poll._id)
+		this.props.vote(values, this.props.poll, Alert)
 	}
 
 	renderGraph = () => {
@@ -134,7 +135,6 @@ class PollDetails extends Component {
 }
 
 const validate = ({ selection, customSelection }, props) => {
-	console.log(props)
 	const errors = {}
 	if (!selection) errors.selection = 'Please select an option'
 
