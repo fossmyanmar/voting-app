@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Container, Row, Col, ListGroup } from 'reactstrap'
 import { connect } from 'react-redux'
 
 import * as actions from '../../actions'
+
+import RenderPolls from '../presentational/RenderPolls'
 
 class Home extends Component {
 	componentWillMount() {
@@ -12,18 +13,6 @@ class Home extends Component {
 
 	componentWillUnmount() {
 		this.props.clearPoll()
-	}
-
-	renderPolls = () => {
-		return this.props.poll && this.props.poll.constructor === Array
-			? this.props.poll.map((poll, i) => (
-					<ListGroupItem className="poll-list-item" key={i}>
-						<Link className="poll-link" to={`/poll/${poll.id}`}>
-							{poll.pollQuestion}
-						</Link>
-					</ListGroupItem>
-				))
-			: ''
 	}
 
 	render() {
@@ -50,7 +39,9 @@ class Home extends Component {
 						md={{ size: '8', offset: 2 }}
 						sm={{ size: '10', offset: 1 }}
 						xs="12">
-						<ListGroup>{this.renderPolls()}</ListGroup>
+						<ListGroup>
+							<RenderPolls polls={this.props.poll} />
+						</ListGroup>
 					</Col>
 				</Row>
 			</Container>
