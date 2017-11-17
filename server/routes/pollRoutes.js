@@ -85,4 +85,11 @@ poll.put('/vote', (req, res) => {
 	}
 })
 
+poll.delete('/delete/:id', requireLogin, (req, res) => {
+	Poll.findByIdAndRemove(req.params.id).then(deletedPoll => {
+		if (deletedPoll) res.send({ status: 'ok' })
+		else res.send({ status: 'Warning: poll not found' })
+	})
+})
+
 module.exports = poll

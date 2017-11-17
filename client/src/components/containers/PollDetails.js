@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 import { Container, Row, Col, Form, ButtonGroup, Button } from 'reactstrap'
+import axios from 'axios'
 import Alert from 'react-s-alert'
 
 import * as actions from '../../actions'
@@ -20,8 +21,15 @@ class PollDetails extends Component {
 		this.props.vote(values, this.props.poll, Alert)
 	}
 
-	delete = test => {
-		console.log(test)
+	delete = id => {
+		axios
+			.delete(`/poll/delete/${id}`)
+			.then(({ data }) => {
+				if (data.status === 'ok') this.props.history.push('/')
+			})
+			.catch(err => {
+				Alert.error(err.response.data.error)
+			})
 	}
 
 	renderForm = () => {
@@ -63,7 +71,7 @@ class PollDetails extends Component {
 							</Button>
 							<Button outline>Tweet</Button>
 							<Button
-								onClick={this.delete.apply(null, [this.props.match.params.id])}
+								onClick={this.delete.bind(null, [this.props.match.params.id])}
 								outline
 								color="danger">
 								Delete
