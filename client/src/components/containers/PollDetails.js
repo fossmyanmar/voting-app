@@ -32,6 +32,13 @@ class PollDetails extends Component {
 			})
 	}
 
+	tweet = () => {
+		const url = `https://twitter.com/intent/tweet?text=Come%20vote%20on%20my%20poll!%20-%20${
+			this.props.poll.pollQuestion
+		}%0A${window.location}`
+		window.open(url, 'twitter')
+	}
+
 	renderForm = () => {
 		const { poll } = this.props
 
@@ -69,7 +76,7 @@ class PollDetails extends Component {
 							<Button outline color="success">
 								Submit
 							</Button>
-							<Button className="btn-tweet" outline>
+							<Button className="btn-tweet" onClick={this.tweet} outline>
 								Tweet
 							</Button>
 							<Button
