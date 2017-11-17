@@ -37,24 +37,25 @@ export const getPoll = id => dispatch => {
 
 export const vote = (selection, poll, Alert) => dispatch => {
 	selection.id = poll._id
-	axios.put(`/poll/vote`, selection).then(({ status, data }) => {
-		if (status === 200) {
-			if (data) {
+	axios
+		.put(`/poll/vote`, selection)
+		.then(({ status, data }) => {
+			if (status === 200) {
 				dispatch({
 					type: POLL_DETAILS,
 					payload: data
 				})
-			} else {
-				dispatch({
-					type: POLL_DETAILS,
-					payload: poll
-				})
-				Alert.error(
-					'Vote failed: Custom option is the same as a predefined option'
-				)
 			}
-		}
-	})
+		})
+		.catch(() => {
+			dispatch({
+				type: POLL_DETAILS,
+				payload: poll
+			})
+			Alert.error(
+				'Vote failed: Custom option is the same as a predefined option'
+			)
+		})
 }
 
 export const clearPoll = () => ({

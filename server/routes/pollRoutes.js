@@ -65,7 +65,7 @@ poll.put('/vote', (req, res) => {
 			},
 			{ new: true }
 		)
-			.then(updatedPoll => res.send(updatedPoll))
+			.then(updatedPoll => res.status(304).send(updatedPoll))
 			.catch(err => res.send(err))
 	} else {
 		Poll.findOneAndUpdate(
