@@ -20,6 +20,10 @@ class PollDetails extends Component {
 		this.props.vote(values, this.props.poll, Alert)
 	}
 
+	delete = test => {
+		console.log(test)
+	}
+
 	renderForm = () => {
 		const { poll } = this.props
 
@@ -56,6 +60,13 @@ class PollDetails extends Component {
 						<ButtonGroup className="btn-vote" vertical>
 							<Button outline color="success">
 								Submit
+							</Button>
+							<Button outline>Tweet</Button>
+							<Button
+								onClick={this.delete.apply(null, [this.props.match.params.id])}
+								outline
+								color="danger">
+								Delete
 							</Button>
 						</ButtonGroup>
 					</Form>
