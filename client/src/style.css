@@ -61,6 +61,21 @@
 	box-shadow: 0 0 0 3px rgba(36, 41, 47, 0.5);
 }
 
+.btn-tweet {
+	color: #009cfa;
+	border-color: #009cfa;
+}
+
+.btn-tweet:hover,
+.btn-tweet:active {
+	background-color: #009cfa;
+	border-color: #009cfa;
+}
+
+.btn-tweet:focus {
+	box-shadow: 0 0 0 3px rgba(0, 156, 250, 0.5);
+}
+
 .btn-add-option {
 	margin-bottom: 10px;
 }

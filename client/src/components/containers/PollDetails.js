@@ -69,7 +69,9 @@ class PollDetails extends Component {
 							<Button outline color="success">
 								Submit
 							</Button>
-							<Button outline>Tweet</Button>
+							<Button className="btn-tweet" outline>
+								Tweet
+							</Button>
 							<Button
 								onClick={this.delete.bind(null, [this.props.match.params.id])}
 								outline
