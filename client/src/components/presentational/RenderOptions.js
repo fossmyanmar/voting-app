@@ -7,7 +7,10 @@ import RenderExtraOption from './RenderExtraOption'
 export default ({ fields, meta: { error, pristine } }) => {
 	return (
 		<div className="text-center">
-			<Button outline className="btn-add-option" onClick={() => fields.push()}>
+			<Button
+				outline
+				className="btn-black btn-add-option"
+				onClick={() => fields.push()}>
 				Add Option
 			</Button>
 			{!pristine && error && <div className="error">{error}</div>}

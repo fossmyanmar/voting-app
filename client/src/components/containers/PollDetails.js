@@ -95,7 +95,6 @@ class PollDetails extends Component {
 								Tweet
 							</Button>
 							<Button
-								// onClick={this.delete.bind(null, [this.props.match.params.id])}
 								onClick={this.props.toggleDeleteModal}
 								outline
 								color="danger">
@@ -123,10 +122,16 @@ class PollDetails extends Component {
 					<ModalHeader>Delete Poll</ModalHeader>
 					<ModalBody>Are you sure you want to delete the poll?</ModalBody>
 					<ModalFooter>
-						<Button outline color="danger">
+						<Button
+							outline
+							color="danger"
+							onClick={this.delete.bind(null, [this.props.match.params.id])}>
 							Delete
 						</Button>{' '}
-						<Button outline color="danger">
+						<Button
+							outline
+							className="btn-black"
+							onClick={this.props.toggleDeleteModal}>
 							Cancel
 						</Button>
 					</ModalFooter>

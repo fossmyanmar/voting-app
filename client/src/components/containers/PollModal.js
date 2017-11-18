@@ -80,12 +80,12 @@ const PollModal = ({
 				</Button>{' '}
 				<Button
 					outline
-					className="btn-clear-form"
+					color="secondary"
 					disabled={pristine || submitting}
 					onClick={reset}>
 					Clear Values
 				</Button>
-				<Button outline color="danger" onClick={cancel}>
+				<Button outline className="btn-black" onClick={cancel}>
 					Cancel
 				</Button>
 			</ModalFooter>

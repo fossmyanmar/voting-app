@@ -28,21 +28,18 @@
 	box-shadow: 0 0 0 3px rgba(236, 55, 27, 0.5);
 }
 
-.btn-add-option,
-.btn-clear-form {
+.btn-black {
 	color: #212529;
 	border-color: #212529;
 }
 
-.btn-add-option:hover,
-.btn-add-option:active .btn-clear-form:hover,
-.btn-clear-form:active {
+.btn-black:hover,
+.btn-black:active {
 	background-color: #212529;
 	border-color: #212529;
 }
 
-.btn-add-option:focus,
-.btn-clear-form:focus {
+.btn-black:focus {
 	box-shadow: 0 0 0 3px rgba(33, 37, 41, 0.5);
 }
 
