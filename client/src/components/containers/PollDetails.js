@@ -120,7 +120,12 @@ const validate = ({ selection, customSelection }) => {
 	return errors
 }
 
-const mapStateToProps = ({ poll, form, auth }) => ({ poll, form, auth })
+const mapStateToProps = ({ poll, form, auth, toggle }) => ({
+	poll,
+	form,
+	auth,
+	toggle
+})
 
 export default reduxForm({
 	form: 'vote',
