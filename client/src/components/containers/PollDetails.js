@@ -36,7 +36,11 @@ class PollDetails extends Component {
 		const url = `https://twitter.com/intent/tweet?text=Come%20vote%20on%20my%20poll!%20-%20${
 			this.props.poll.pollQuestion
 		}%0A${window.location}`
-		window.open(url, 'twitter')
+		window.open(
+			url,
+			'twitter',
+			'location,status,scrollbars,resizable,width=640, height=250, left=320, top=125'
+		)
 	}
 
 	renderForm = () => {
