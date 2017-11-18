@@ -3,7 +3,8 @@ import { allPolls, getPoll, getMyPolls, clearPoll, vote } from './pollActions'
 import {
 	toggleDropdown,
 	toggleLoginModal,
-	togglePollModal
+	togglePollModal,
+	toggleDeleteModal
 } from './toggleActions'
 
 export {
@@ -11,6 +12,7 @@ export {
 	toggleDropdown,
 	toggleLoginModal,
 	togglePollModal,
+	toggleDeleteModal,
 	allPolls,
 	getPoll,
 	getMyPolls,

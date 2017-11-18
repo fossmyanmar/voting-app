@@ -2,9 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
-import { Container, Row, Col, Form, ButtonGroup, Button } from 'reactstrap'
 import axios from 'axios'
 import Alert from 'react-s-alert'
+import {
+	Container,
+	Row,
+	Col,
+	Form,
+	ButtonGroup,
+	Button,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter
+} from 'reactstrap'
 
 import * as actions from '../../actions'
 
@@ -84,7 +95,8 @@ class PollDetails extends Component {
 								Tweet
 							</Button>
 							<Button
-								onClick={this.delete.bind(null, [this.props.match.params.id])}
+								// onClick={this.delete.bind(null, [this.props.match.params.id])}
+								onClick={this.props.toggleDeleteModal}
 								outline
 								color="danger">
 								Delete
@@ -105,6 +117,20 @@ class PollDetails extends Component {
 						<RenderGraph poll={this.props.poll} />
 					</Col>
 				</Row>
+				<Modal
+					isOpen={this.props.toggle.showDeleteModal}
+					toggle={this.props.toggleDeleteModal}>
+					<ModalHeader>Delete Poll</ModalHeader>
+					<ModalBody>Are you sure you want to delete the poll?</ModalBody>
+					<ModalFooter>
+						<Button outline color="danger">
+							Delete
+						</Button>{' '}
+						<Button outline color="danger">
+							Cancel
+						</Button>
+					</ModalFooter>
+				</Modal>
 			</Container>
 		)
 	}
