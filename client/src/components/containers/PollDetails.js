@@ -110,7 +110,7 @@ class PollDetails extends Component {
 	}
 }
 
-const validate = ({ selection, customSelection }, props) => {
+const validate = ({ selection, customSelection }) => {
 	const errors = {}
 	if (!selection) errors.selection = 'Please select an option'
 
