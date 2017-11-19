@@ -4,28 +4,22 @@ import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 import axios from 'axios'
 import Alert from 'react-s-alert'
-import {
-	Container,
-	Row,
-	Col,
-	Form,
-	ButtonGroup,
-	Button,
-	Modal,
-	ModalHeader,
-	ModalBody,
-	ModalFooter
-} from 'reactstrap'
+import { Container, Row, Col, Form, ButtonGroup, Button } from 'reactstrap'
 
 import * as actions from '../../actions'
 
 import RenderSelect from '../presentational/RenderSelect'
 import RenderInput from '../presentational/RenderInput'
 import RenderGraph from '../presentational/RenderGraph'
+import DeleteModal from '../presentational/DeleteModal'
 
 class PollDetails extends Component {
 	componentWillMount() {
 		this.props.getPoll(this.props.match.params.id)
+	}
+
+	componentWillUnmount() {
+		this.props.toggleDeleteModal()
 	}
 
 	submit = values => {
@@ -116,26 +110,11 @@ class PollDetails extends Component {
 						<RenderGraph poll={this.props.poll} />
 					</Col>
 				</Row>
-				<Modal
+				<DeleteModal
 					isOpen={this.props.toggle.showDeleteModal}
-					toggle={this.props.toggleDeleteModal}>
-					<ModalHeader>Delete Poll</ModalHeader>
-					<ModalBody>Are you sure you want to delete the poll?</ModalBody>
-					<ModalFooter>
-						<Button
-							outline
-							color="danger"
-							onClick={this.delete.bind(null, [this.props.match.params.id])}>
-							Delete
-						</Button>{' '}
-						<Button
-							outline
-							className="btn-black"
-							onClick={this.props.toggleDeleteModal}>
-							Cancel
-						</Button>
-					</ModalFooter>
-				</Modal>
+					toggle={this.props.toggleDeleteModal}
+					deletePoll={this.delete.bind(null, [this.props.match.params.id])}
+				/>
 			</Container>
 		)
 	}
