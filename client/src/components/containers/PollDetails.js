@@ -18,10 +18,6 @@ class PollDetails extends Component {
 		this.props.getPoll(this.props.match.params.id)
 	}
 
-	componentWillUnmount() {
-		this.props.toggleDeleteModal()
-	}
-
 	submit = values => {
 		this.props.vote(values, this.props.poll, Alert)
 	}
@@ -35,6 +31,7 @@ class PollDetails extends Component {
 			.catch(err => {
 				Alert.error(err.response.data.error)
 			})
+		this.props.toggleDeleteModal()
 	}
 
 	tweet = () => {
