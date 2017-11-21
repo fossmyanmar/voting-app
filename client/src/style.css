@@ -152,6 +152,21 @@
 	border-color: #21252a;
 }
 
+#wrapper {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.container-fluid {
+	flex: 1;
+}
+
+footer {
+	margin-top: 3rem;
+	margin-bottom: 1.5rem;
+}
+
 @media (max-width: 575px) {
 	.graph-container {
 		margin-top: 1.5rem;

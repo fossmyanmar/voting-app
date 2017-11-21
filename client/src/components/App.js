@@ -6,6 +6,7 @@ import * as actions from '../actions'
 
 import Home from './containers/Home'
 import Header from './containers/Header'
+import Footer from './presentational/Footer'
 import PollDetails from './containers/PollDetails'
 import MyPolls from './containers/MyPolls'
 
@@ -18,11 +19,12 @@ class App extends Component {
 	render() {
 		return (
 			<BrowserRouter>
-				<div>
+				<div id="wrapper">
 					<Header />
 					<Route exact path="/" component={Home} />
 					<Route exact path="/my_polls" component={RequireAuth(MyPolls)} />
 					<Route path="/poll/:id" component={PollDetails} />
+					<Footer />
 					<Alert effect="slide" timeout={4000} />
 				</div>
 			</BrowserRouter>

@@ -49,7 +49,7 @@ const Header = ({
 	}
 
 	return (
-		<Navbar light expand="md">
+		<Navbar id="header" light expand="md">
 			<NavbarBrand tag={Link} to="/">
 				VoteMole
 			</NavbarBrand>

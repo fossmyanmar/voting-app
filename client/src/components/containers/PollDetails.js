@@ -107,7 +107,7 @@ class PollDetails extends Component {
 
 	render() {
 		return (
-			<Container>
+			<Container fluid>
 				<Row>
 					{this.renderForm()}
 					<Col className="graph-container" sm={8}>
