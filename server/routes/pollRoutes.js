@@ -5,6 +5,47 @@ const Poll = require('../models/Poll')
 
 const poll = express.Router()
 
+const determineQuery = req =>
+	req.path === '/all_polls'
+		? Poll.find({})
+		: Poll.find({ userID: req.params.id })
+
+const findData = (req, res) => {
+	let findQuery
+
+	findQuery = determineQuery(req)
+
+	const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
+	let limit = req.query.limit ? parseInt(req.query.limit, 10) : 20
+	if (limit > 50) limit = 50
+
+	let totalCount
+
+	const count = findQuery.count().then(result => {
+		totalCount = result
+	})
+
+	findQuery = determineQuery(req)
+
+	const data = findQuery
+		.sort({ _id: 1 })
+		.skip(offset)
+		.limit(limit)
+		.then(polls =>
+			polls.map(poll => ({
+				id: poll._id,
+				pollQuestion: poll.pollQuestion
+			}))
+		)
+
+	Promise.all([count, data]).then(result => {
+		res.json({
+			count: totalCount,
+			polls: result[1]
+		})
+	})
+}
+
 poll.post('/submit', requireLogin, (req, res) => {
 	Poll.findOne({
 		userID: req.body.userID,
@@ -22,31 +63,9 @@ poll.get('/get_poll/:id', (req, res) => {
 	Poll.findById(req.params.id).then(poll => res.send(poll))
 })
 
-poll.get('/get_user_polls/:id', requireLogin, (req, res) => {
-	Poll.find({ userID: req.params.id }).then(polls => {
-		res.send(
-			polls.map(poll => {
-				return {
-					id: poll._id,
-					pollQuestion: poll.pollQuestion
-				}
-			})
-		)
-	})
-})
+poll.get('/get_user_polls/:id', requireLogin, findData)
 
-poll.get('/all_polls', (req, res) => {
-	Poll.find({}).then(polls =>
-		res.send(
-			polls.map(poll => {
-				return {
-					id: poll._id,
-					pollQuestion: poll.pollQuestion
-				}
-			})
-		)
-	)
-})
+poll.get('/all_polls', findData)
 
 poll.put('/vote', (req, res) => {
 	if (req.body.selection === "I'd like a custom option") {
