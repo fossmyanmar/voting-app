@@ -167,6 +167,11 @@ footer {
 	margin-bottom: 1.5rem;
 }
 
+.pagination {
+	margin-top: 2rem;
+	justify-content: center;
+}
+
 @media (max-width: 575px) {
 	.graph-container {
 		margin-top: 1.5rem;

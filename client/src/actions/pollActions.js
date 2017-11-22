@@ -3,27 +3,25 @@ import axios from 'axios'
 import { POLL_ALL, POLL_DETAILS, POLL_USER, POLL_CLEAR } from './types'
 
 export const allPolls = () => dispatch => {
-	axios.get('/poll/all_polls').then(({ status, data: { polls } }) => {
+	axios.get('/poll/all_polls').then(({ status, data }) => {
 		if (status === 200) {
 			dispatch({
 				type: POLL_ALL,
-				payload: polls
+				payload: data
 			})
 		}
 	})
 }
 
 export const getMyPolls = id => dispatch => {
-	axios
-		.get(`/poll/get_user_polls/${id}`)
-		.then(({ status, data: { polls } }) => {
-			if (status === 200) {
-				dispatch({
-					type: POLL_USER,
-					payload: polls
-				})
-			}
-		})
+	axios.get(`/poll/get_user_polls/${id}`).then(({ status, data }) => {
+		if (status === 200) {
+			dispatch({
+				type: POLL_USER,
+				payload: data
+			})
+		}
+	})
 }
 
 export const getPoll = id => dispatch => {

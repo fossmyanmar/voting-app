@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, ListGroup } from 'reactstrap'
 import { connect } from 'react-redux'
+import Pagination from 'react-ultimate-pagination-bootstrap-4'
 
 import * as actions from '../../actions'
 
 import RenderPolls from '../presentational/RenderPolls'
 
 class Home extends Component {
+	state = {
+		pageSize: 1
+	}
+
+	onPageChange = page => this.setState({ page })
+
 	componentWillMount() {
 		this.props.allPolls()
 	}
@@ -40,8 +47,17 @@ class Home extends Component {
 						sm={{ size: '10', offset: 1 }}
 						xs="12">
 						<ListGroup>
-							<RenderPolls polls={this.props.poll} />
+							{this.props.poll && <RenderPolls polls={this.props.poll.polls} />}
 						</ListGroup>
+						{this.props.poll && (
+							<Pagination
+								currentPage={this.state.page || 1}
+								totalPages={Math.ceil(
+									this.props.poll.count / this.state.pageSize
+								)}
+								onChange={this.onPageChange}
+							/>
+						)}
 					</Col>
 				</Row>
 			</Container>
