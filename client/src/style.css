@@ -158,13 +158,32 @@
 	flex-direction: column;
 }
 
+#header {
+	margin-bottom: 2rem;
+	border-bottom: 1px solid #21252a;
+}
+
 .container-fluid {
+	max-width: 960px;
 	flex: 1;
 }
 
 footer {
 	margin-top: 3rem;
 	margin-bottom: 1.5rem;
+}
+
+.navbar-light .navbar-toggler {
+	color: #21252a;
+	border-color: #21252a;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+	color: #21252a;
+}
+
+.navbar-light .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(33, 37, 41)' stroke-width='2' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .pagination {
