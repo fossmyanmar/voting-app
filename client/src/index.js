@@ -6,13 +6,12 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
-import logger from 'redux-logger'
 import registerServiceWorker from './registerServiceWorker'
 
 import App from './components/App'
 import reducers from './reducers'
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk, logger))
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
 if (process.env.NODE_ENV !== 'production') {
 	if (module.hot) {
