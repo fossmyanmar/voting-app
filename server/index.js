@@ -33,7 +33,7 @@ app.use(passport.session())
 app.use('/auth', auth)
 app.use('/poll', poll)
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
 	app.use(express.static('client/build'))
 	const path = require('path')
 	app.get('*', (req, res) => {
