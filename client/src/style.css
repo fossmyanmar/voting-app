@@ -1,3 +1,15 @@
+@media (max-width: 575px) {
+	.graph-container {
+		margin-top: 1.5rem;
+	}
+
+	.poll-heading {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+		text-align: center;
+	}
+}
+
 .btn-facebook {
 	color: #4060b7;
 	border-color: #4060b7;
@@ -152,6 +164,11 @@
 	border-color: #21252a;
 }
 
+.poll-heading {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
 #wrapper {
 	display: flex;
 	min-height: 100vh;
@@ -207,10 +224,4 @@ footer {
 .page-item.active .page-link {
 	background-color: #212529;
 	border-color: #212529;
-}
-
-@media (max-width: 575px) {
-	.graph-container {
-		margin-top: 1.5rem;
-	}
 }

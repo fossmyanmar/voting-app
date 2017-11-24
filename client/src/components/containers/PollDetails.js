@@ -52,8 +52,8 @@ class PollDetails extends Component {
 			return
 		} else {
 			return (
-				<Col sm={4}>
-					<h1>{poll.pollQuestion}</h1>
+				<Col xs="12" sm="4">
+					<h1 className="poll-heading">{poll.pollQuestion}</h1>
 					<Form
 						onSubmit={this.props.handleSubmit(values => this.submit(values))}
 						id="vote">
@@ -111,7 +111,7 @@ class PollDetails extends Component {
 			<Container fluid>
 				<Row>
 					{this.renderForm()}
-					<Col className="graph-container" sm={8}>
+					<Col className="graph-container" sm="8" xs="12">
 						<RenderGraph poll={this.props.poll} />
 					</Col>
 				</Row>
