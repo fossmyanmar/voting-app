@@ -51,6 +51,10 @@ const Header = ({
 	return (
 		<Navbar id="header" light expand="md">
 			<NavbarBrand tag={Link} to="/">
+				<img
+					src="https://res.cloudinary.com/avatarhzh/image/upload/v1509887327/build-a-voting-app/logo.svg"
+					alt="vote mole logo"
+				/>
 				VoteMole
 			</NavbarBrand>
 			<NavbarToggler onClick={toggleDropdown} />
