@@ -9,13 +9,16 @@ import RenderPolls from '../presentational/RenderPolls'
 
 class Home extends Component {
 	state = {
-		pageSize: 1
+		pageSize: 5
 	}
 
-	onPageChange = page => this.setState({ page })
+	onPageChange = page => {
+		this.setState({ page })
+		this.props.allPolls(this.state.pageSize, (page - 1) * this.state.pageSize)
+	}
 
 	componentWillMount() {
-		this.props.allPolls()
+		this.props.allPolls(this.state.pageSize, 0)
 	}
 
 	componentWillUnmount() {
@@ -49,15 +52,17 @@ class Home extends Component {
 						<ListGroup>
 							{this.props.poll && <RenderPolls polls={this.props.poll.polls} />}
 						</ListGroup>
-						{this.props.poll && (
-							<Pagination
-								currentPage={this.state.page || 1}
-								totalPages={Math.ceil(
-									this.props.poll.count / this.state.pageSize
-								)}
-								onChange={this.onPageChange}
-							/>
-						)}
+						{this.props.poll &&
+							this.props.poll.count &&
+							this.state.pageSize < this.props.poll.count && (
+								<Pagination
+									currentPage={this.state.page || 1}
+									totalPages={Math.ceil(
+										this.props.poll.count / this.state.pageSize
+									)}
+									onChange={this.onPageChange}
+								/>
+							)}
 					</Col>
 				</Row>
 			</Container>

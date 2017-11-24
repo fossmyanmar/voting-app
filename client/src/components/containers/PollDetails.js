@@ -41,14 +41,14 @@ class PollDetails extends Component {
 		window.open(
 			url,
 			'twitter',
-			'location,status,scrollbars,resizable,width=640, height=250, left=320, top=125'
+			'location,status,scrollbars,resizable,width=640, height=250,left=320,top=125'
 		)
 	}
 
 	renderForm = () => {
 		const { poll } = this.props
 
-		if (!poll || poll.constructor === Array) {
+		if (!poll || (poll.polls && poll.polls.constructor === Array)) {
 			return
 		} else {
 			return (

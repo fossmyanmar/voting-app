@@ -1,23 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col, ListGroup } from 'reactstrap'
+import Pagination from 'react-ultimate-pagination-bootstrap-4'
 
 import * as actions from '../../actions'
 
 import RenderPolls from '../presentational/RenderPolls'
 
 class MyPolls extends Component {
-	componentDidMount() {
+	state = {
+		pageSize: 5
+	}
+
+	componentWillMount() {
 		if (this.props.poll && this.props.poll.constructor !== Array) {
-			this.props.getMyPolls(this.props.auth._id)
+			this.props.getMyPolls(this.props.auth._id, this.state.pageSize, 0)
 		}
 	}
 
-	shouldComponentUpdate(nextProps) {
-		if (!nextProps.poll) {
-			nextProps.getMyPolls(nextProps.auth._id)
-		}
-		return true
+	componentWillUnmount() {
+		this.props.clearPoll()
+	}
+
+	onPageChange = page => {
+		this.setState({ page })
+		this.props.getMyPolls(
+			this.props.auth._id,
+			this.state.pageSize,
+			(page - 1) * this.state.pageSize
+		)
 	}
 
 	render() {
@@ -31,8 +42,19 @@ class MyPolls extends Component {
 						sm={{ size: '10', offset: 1 }}
 						xs="12">
 						<ListGroup>
-							<RenderPolls polls={this.props.poll} />
+							{this.props.poll && <RenderPolls polls={this.props.poll.polls} />}
 						</ListGroup>
+						{this.props.poll &&
+							this.props.poll.count &&
+							this.state.pageSize < this.props.poll.count && (
+								<Pagination
+									currentPage={this.state.page || 1}
+									totalPages={Math.ceil(
+										this.props.poll.count / this.state.pageSize
+									)}
+									onChange={this.onPageChange}
+								/>
+							)}
 					</Col>
 				</Row>
 			</Container>

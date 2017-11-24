@@ -172,6 +172,24 @@ footer {
 	justify-content: center;
 }
 
+.page-link {
+	color: #212529;
+	border-color: #212529;
+}
+
+.page-link:focus,
+.page-link:hover {
+	color: #fff;
+	background-color: rgba(33, 37, 41, 0.7);
+	border-color: #212529;
+	transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.page-item.active .page-link {
+	background-color: #212529;
+	border-color: #212529;
+}
+
 @media (max-width: 575px) {
 	.graph-container {
 		margin-top: 1.5rem;

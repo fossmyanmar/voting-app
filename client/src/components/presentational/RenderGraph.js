@@ -25,7 +25,7 @@ export default ({ poll }) => {
 		['#333333', '#4d4d4d']
 	]
 
-	if (!poll || poll.constructor === Array) {
+	if (!poll || (poll.polls && poll.polls.constructor === Array)) {
 		return null
 	} else {
 		const labels = poll.pollOptions.map(datum => datum.name)
