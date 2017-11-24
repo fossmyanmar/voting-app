@@ -82,22 +82,23 @@ class PollDetails extends Component {
 							<Button outline color="success">
 								Submit
 							</Button>
-							{poll.userID === this.props.auth._id && [
-								<Button
-									key="tweet"
-									className="btn-tweet"
-									onClick={this.tweet}
-									outline>
-									Tweet
-								</Button>,
-								<Button
-									key="delete"
-									onClick={this.props.toggleDeleteModal}
-									outline
-									color="danger">
-									Delete
-								</Button>
-							]}
+							{this.props.auth &&
+								poll.userID === this.props.auth._id && [
+									<Button
+										key="tweet"
+										className="btn-tweet"
+										onClick={this.tweet}
+										outline>
+										Tweet
+									</Button>,
+									<Button
+										key="delete"
+										onClick={this.props.toggleDeleteModal}
+										outline
+										color="danger">
+										Delete
+									</Button>
+								]}
 						</ButtonGroup>
 					</Form>
 				</Col>
