@@ -23,7 +23,7 @@ class App extends Component {
 					<Header />
 					<Route exact path="/" component={Home} />
 					<Route exact path="/my_polls" component={RequireAuth(MyPolls)} />
-					<Route path="/poll/:id" component={PollDetails} />
+					<Route path="/details/:id" component={PollDetails} />
 					<Footer />
 					<Alert effect="slide" timeout={4000} />
 				</div>

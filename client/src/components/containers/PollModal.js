@@ -48,7 +48,7 @@ const PollModal = ({
 			.then(({ data }) => {
 				toggle()
 				reset()
-				history.push(`/poll/${data}`)
+				history.push(`/details/${data}`)
 				Alert.success('Poll submitted!')
 			})
 			.catch(err => {
