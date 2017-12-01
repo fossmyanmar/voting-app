@@ -2,6 +2,7 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const GithubStrategy = require('passport-github').Strategy
+const TwitterStrategy = require('passport-twitter').Strategy
 const mongoose = require('mongoose')
 
 const keys = require('../config/keys')
@@ -63,6 +64,18 @@ passport.use(
 			clientID: keys.githubClientID,
 			clientSecret: keys.githubSecretKey,
 			callbackURL: '/auth/github/callback',
+			proxy: true
+		},
+		login
+	)
+)
+
+passport.use(
+	new TwitterStrategy(
+		{
+			consumerKey: keys.twitterClientID,
+			consumerSecret: keys.twitterSecretKey,
+			callbackURL: '/auth/twitter/callback',
 			proxy: true
 		},
 		login

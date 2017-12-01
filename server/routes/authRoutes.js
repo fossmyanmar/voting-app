@@ -30,6 +30,12 @@ auth.get('/github/callback', passport.authenticate('github'), (req, res) => {
 	res.redirect('/')
 })
 
+auth.get('/twitter', passport.authenticate('twitter'))
+
+auth.get('/twitter/callback', passport.authenticate('twitter'), (req, res) => {
+	res.redirect('/')
+})
+
 auth.get('/current_user', (req, res) => {
 	res.send(req.user)
 })
