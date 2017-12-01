@@ -32,12 +32,6 @@ class MyPolls extends Component {
 	}
 
 	render() {
-		if (this.props.poll) {
-			console.log('this.props.poll', this.props.poll)
-			console.log('this.props.poll.count', this.props.poll.count)
-			console.log(this.state.pageSize < this.props.poll.count)
-		}
-
 		return (
 			<Container fluid>
 				<h1 className="text-center">My Polls</h1>
