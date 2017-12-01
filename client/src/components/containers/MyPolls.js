@@ -32,6 +32,12 @@ class MyPolls extends Component {
 	}
 
 	render() {
+		if (this.props.poll) {
+			console.log('this.props.poll', this.props.poll)
+			console.log('this.props.poll.count', this.props.poll.count)
+			console.log(this.state.pageSize < this.props.poll.count)
+		}
+
 		return (
 			<Container fluid>
 				<h1 className="text-center">My Polls</h1>
@@ -45,16 +51,18 @@ class MyPolls extends Component {
 							{this.props.poll && <RenderPolls polls={this.props.poll.polls} />}
 						</ListGroup>
 						{this.props.poll &&
-							this.props.poll.count &&
-							this.state.pageSize < this.props.poll.count && (
-								<Pagination
-									currentPage={this.state.page || 1}
-									totalPages={Math.ceil(
-										this.props.poll.count / this.state.pageSize
-									)}
-									onChange={this.onPageChange}
-								/>
-							)}
+						this.props.poll.count &&
+						this.state.pageSize < this.props.poll.count ? (
+							<Pagination
+								currentPage={this.state.page || 1}
+								totalPages={Math.ceil(
+									this.props.poll.count / this.state.pageSize
+								)}
+								onChange={this.onPageChange}
+							/>
+						) : (
+							"You don't have any polls yet, click on 'Add Poll' in the navigation to add a poll"
+						)}
 					</Col>
 				</Row>
 			</Container>
