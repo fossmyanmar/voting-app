@@ -70,18 +70,18 @@
 	box-shadow: 0 0 0 3px rgba(36, 41, 47, 0.5);
 }
 
-.btn-tweet {
+.btn-twitter {
 	color: #009cfa;
 	border-color: #009cfa;
 }
 
-.btn-tweet:hover,
-.btn-tweet:active {
+.btn-twitter:hover,
+.btn-twitter:active {
 	background-color: #009cfa;
 	border-color: #009cfa;
 }
 
-.btn-tweet:focus {
+.btn-twitter:focus {
 	box-shadow: 0 0 0 3px rgba(0, 156, 250, 0.5);
 }
 

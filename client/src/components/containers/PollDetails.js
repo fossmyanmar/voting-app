@@ -86,7 +86,7 @@ class PollDetails extends Component {
 								poll.userID === this.props.auth._id && [
 									<Button
 										key="tweet"
-										className="btn-tweet"
+										className="btn-twitter"
 										onClick={this.tweet}
 										outline>
 										Tweet
