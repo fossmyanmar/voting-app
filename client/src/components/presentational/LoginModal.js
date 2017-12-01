@@ -10,6 +10,9 @@ export default ({ isOpen, toggle }) => (
 			<Button href="/auth/google" className="btn-google" outline block>
 				Login with Google
 			</Button>
+			<Button href="/auth/twitter" className="btn-twitter" outline block>
+				Login with Twitter
+			</Button>
 			<Button href="/auth/github" className="btn-github" outline block>
 				Login with Github
 			</Button>
