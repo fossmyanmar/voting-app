@@ -9,7 +9,8 @@ const pollSchema = new Schema({
 			name: String,
 			quantity: Number
 		}
-	]
+	],
+	IP: { type: [String], default: [] }
 })
 
 const Polls = mongoose.model('poll', pollSchema)

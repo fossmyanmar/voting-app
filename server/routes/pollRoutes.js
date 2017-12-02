@@ -72,7 +72,8 @@ poll.put('/vote', (req, res) => {
 		Poll.findOneAndUpdate(
 			{
 				_id: req.body.id,
-				'pollOptions.name': { $ne: req.body.customSelection }
+				'pollOptions.name': { $ne: req.body.customSelection },
+				IP: { $ne: req.clientIp }
 			},
 			{
 				$addToSet: {
@@ -80,6 +81,9 @@ poll.put('/vote', (req, res) => {
 						name: req.body.customSelection,
 						quantity: 1
 					}
+				},
+				$push: {
+					IP: req.clientIP
 				}
 			},
 			{ new: true }
@@ -94,13 +98,21 @@ poll.put('/vote', (req, res) => {
 				_id: req.body.id,
 				pollOptions: {
 					$elemMatch: { name: req.body.selection }
+				},
+				IP: { $ne: req.clientIp }
+			},
+			{
+				$inc: { 'pollOptions.$.quantity': 1 },
+				$push: {
+					IP: req.clientIp
 				}
 			},
-			{ $inc: { 'pollOptions.$.quantity': 1 } },
 			{ new: true }
-		).then(poll => {
-			res.send(poll)
-		})
+		)
+			.then(poll => {
+				res.send(poll)
+			})
+			.catch(err => res.send(err))
 	}
 })
 

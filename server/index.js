@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const bodyParser = require('body-parser')
+const requestIP = require('request-ip')
 
 const keys = require('./config/keys')
 
@@ -18,6 +19,7 @@ mongoose.Promise = global.Promise
 const app = express()
 
 app.use(bodyParser.json())
+app.use(requestIP.mw())
 
 app.use(
 	session({

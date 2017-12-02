@@ -45,10 +45,12 @@ export const vote = (selection, poll, Alert) => dispatch => {
 		.put(`/poll/vote`, selection)
 		.then(({ status, data }) => {
 			if (status === 200) {
-				dispatch({
-					type: POLL_DETAILS,
-					payload: data
-				})
+				data
+					? dispatch({
+							type: POLL_DETAILS,
+							payload: data
+						})
+					: Alert.error("You've already voted on this poll")
 			}
 		})
 		.catch(() => {
