@@ -48,6 +48,8 @@ be defined:
 | FACEBOOK_SECRET_KEY | Corresponding secret key to app                      |
 | GITHUB_CLIENT_ID    | Client ID of Github OAuth app                        |
 | GITHUB_SECRET_KEY   | Corresponding secret key to OAuth app                |
+| TWITTER_CLIENT_ID   | Client ID of Twitter app                             |
+| TWITTER_SECRET_KEY  | Corresponding secret key to tge app                  |
 | COOKIE_KEY          | Secret cookie key for login session. Can be anything |
 
 Create a file called `dev.js` in `server/config` directory. Assign an object
@@ -63,6 +65,8 @@ module.exports = {
 	facebookSecretKey: 'your-facebook-secret-key',
 	githubClientID: 'your-github-client-id',
 	githubSecretKey: 'your-github-secret-key',
+	twitterClientID: 'your-twitter-client-id',
+	twitterSecretKey: 'your-twitter-secret-key'
 	cookieKey: 'your-cookie-key'
 }
 ```
