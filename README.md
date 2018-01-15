@@ -33,8 +33,7 @@ Note you must add at least 2 options to the poll.
 After cloning or downloading the repo, type `npm run dev` in the terminal and
 the server and client servers will start. Client server is on port 3000, server
 side server is on port 5000. To just run server side server, from root directory
-type `npm start`. To just run client server, from root directory type `cd client
-&& npm start`
+type `npm start`. To just run client server, from root directory type `cd client && npm start`
 
 Note that before starting the server the following environment variables should
 be defined:
@@ -49,7 +48,7 @@ be defined:
 | GITHUB_CLIENT_ID    | Client ID of Github OAuth app                        |
 | GITHUB_SECRET_KEY   | Corresponding secret key to OAuth app                |
 | TWITTER_CLIENT_ID   | Client ID of Twitter app                             |
-| TWITTER_SECRET_KEY  | Corresponding secret key to tge app                  |
+| TWITTER_SECRET_KEY  | Corresponding secret key to the app                  |
 | COOKIE_KEY          | Secret cookie key for login session. Can be anything |
 
 Create a file called `dev.js` in `server/config` directory. Assign an object
