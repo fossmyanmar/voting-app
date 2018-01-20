@@ -11,4 +11,4 @@ export default ({ polls }) =>
 					</Link>
 				</ListGroupItem>
 			))
-		: ''
+		: null

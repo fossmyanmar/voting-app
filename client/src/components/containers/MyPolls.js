@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container, Row, Col, ListGroup } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import Pagination from 'react-ultimate-pagination-bootstrap-4'
 
 import * as actions from '../../actions'
 
-import RenderPolls from '../presentational/RenderPolls'
+import RenderPollsList from '../presentational/RenderPollsList'
 
 class MyPolls extends Component {
 	state = {
@@ -15,6 +15,12 @@ class MyPolls extends Component {
 	componentWillMount() {
 		if (this.props.poll && this.props.poll.constructor !== Array) {
 			this.props.getMyPolls(this.props.auth._id, this.state.pageSize, 0)
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (!this.props.auth && nextProps.auth) {
+			this.props.getMyPolls(nextProps.auth._id, this.state.pageSize, 0)
 		}
 	}
 
@@ -41,9 +47,7 @@ class MyPolls extends Component {
 						md={{ size: '8', offset: 2 }}
 						sm={{ size: '10', offset: 1 }}
 						xs="12">
-						<ListGroup>
-							{this.props.poll && <RenderPolls polls={this.props.poll.polls} />}
-						</ListGroup>
+						<RenderPollsList poll={this.props.poll} />
 						{this.props.poll &&
 						this.props.poll.count &&
 						this.state.pageSize < this.props.poll.count ? (
@@ -54,9 +58,7 @@ class MyPolls extends Component {
 								)}
 								onChange={this.onPageChange}
 							/>
-						) : (
-							"You don't have any polls yet, click on 'Add Poll' in the navigation to add a poll"
-						)}
+						) : null}
 					</Col>
 				</Row>
 			</Container>
