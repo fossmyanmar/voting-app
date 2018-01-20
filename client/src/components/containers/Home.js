@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, ListGroup } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import { connect } from 'react-redux'
 import Pagination from 'react-ultimate-pagination-bootstrap-4'
 
 import * as actions from '../../actions'
 
-import RenderPolls from '../presentational/RenderPolls'
+import RenderPollsList from '../presentational/RenderPollsList'
 
 class Home extends Component {
 	state = {
@@ -49,9 +49,7 @@ class Home extends Component {
 						md={{ size: '8', offset: 2 }}
 						sm={{ size: '10', offset: 1 }}
 						xs="12">
-						<ListGroup>
-							{this.props.poll && <RenderPolls polls={this.props.poll.polls} />}
-						</ListGroup>
+						<RenderPollsList poll={this.props.poll} />
 						{this.props.poll &&
 							this.props.poll.count &&
 							this.state.pageSize < this.props.poll.count && (

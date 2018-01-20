@@ -2,10 +2,11 @@ import React from 'react'
 import { ListGroup } from 'reactstrap'
 
 import RenderPolls from './RenderPolls'
+import Loader from './Loader'
 
 export default ({ poll }) => {
 	if (!poll) {
-		return null
+		return <Loader />
 	} else {
 		if (poll.count) {
 			return (

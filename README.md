@@ -83,3 +83,7 @@ Distributed under the ISC license.
 3. Commit your changes `git commit -am 'Add some fooBar`
 4. Push to the branch `git push origin feature/fooBar`
 5. Create a new Pull Request
+
+## Attribution
+
+The loading spinner was created by Miguel Ambrosi. The code for the spinner was gotten from [https://icons8.com/cssload/en/spinners](https://icons8.com/cssload/en/spinners). Terms of Use: [https://icons8.com/cssload/en/terms_of_use](https://icons8.com/cssload/en/terms_of_use)
