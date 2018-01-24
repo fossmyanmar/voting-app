@@ -13,8 +13,8 @@ import {
 
 import * as actions from '../../actions'
 
-import LoginModal from '../presentational/LoginModal'
 import PollModal from './PollModal'
+import LoginModal from '../presentational/LoginModal'
 
 const Header = ({
 	auth,
@@ -57,7 +57,10 @@ const Header = ({
 				/>
 				VoteMole
 			</NavbarBrand>
-			<NavbarToggler onClick={toggleDropdown} />
+			<NavbarToggler
+				className={showDropdown ? 'active' : ''}
+				onClick={toggleDropdown}
+			/>
 			<Collapse isOpen={showDropdown} navbar>
 				<Nav className="ml-auto" navbar>
 					{renderNavItems()}

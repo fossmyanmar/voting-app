@@ -285,6 +285,55 @@ footer {
 	-moz-animation: cssload-rotate 2300ms linear infinite;
 }
 
+.navbar-light .navbar-toggler {
+	width: 56px;
+	height: 40px;
+	position: relative;
+	line-height: 50px;
+}
+
+.navbar-light .navbar-toggler-icon {
+	background-image: none;
+	width: 30px;
+	height: 2px;
+	background-color: #212529;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}
+
+.navbar-toggler-icon:before,
+.navbar-toggler-icon:after {
+	content: '';
+	position: absolute;
+	width: 30px;
+	height: 2px;
+	background-color: #212529;
+	left: -0.0001%;
+	transition: 0.2s;
+}
+
+.navbar-toggler-icon:before {
+	top: -8px;
+}
+
+.navbar-toggler.active .navbar-toggler-icon:before {
+	transform: rotate(135deg);
+	top: 0;
+}
+
+.navbar-toggler.active .navbar-toggler-icon:after {
+	transform: rotate(45deg);
+	top: 0;
+}
+
+.navbar-toggler.active .navbar-toggler-icon {
+	background-color: transparent;
+}
+
+.navbar-toggler-icon:after {
+	top: 8px;
+}
+
 @keyframes cssload-rotate {
 	100% {
 		transform: rotate(360deg);
