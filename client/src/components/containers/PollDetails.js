@@ -12,6 +12,7 @@ import RenderSelect from '../presentational/RenderSelect'
 import RenderInput from '../presentational/RenderInput'
 import RenderGraph from '../presentational/RenderGraph'
 import DeleteModal from '../presentational/DeleteModal'
+import Loader from '../presentational/Loader'
 
 class PollDetails extends Component {
 	componentWillMount() {
@@ -49,7 +50,11 @@ class PollDetails extends Component {
 		const { poll } = this.props
 
 		if (!poll || (poll.polls && poll.polls.constructor === Array)) {
-			return
+			return (
+				<Col xs="12">
+					<Loader />
+				</Col>
+			)
 		} else {
 			return (
 				<Col xs="12" sm="4">

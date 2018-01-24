@@ -5,7 +5,7 @@ import RenderPolls from './RenderPolls'
 import Loader from './Loader'
 
 export default ({ poll }) => {
-	if (!poll) {
+	if (!poll || !poll.polls) {
 		return <Loader />
 	} else {
 		if (poll.count) {
