@@ -180,6 +180,10 @@
 	border-bottom: 1px solid #21252a;
 }
 
+.list-group {
+	height: 276px;
+}
+
 .container-fluid {
 	max-width: 960px;
 	flex: 1;
