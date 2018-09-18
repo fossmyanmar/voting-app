@@ -8,5 +8,6 @@ module.exports = {
 	githubSecretKey: process.env.GITHUB_SECRET_KEY,
 	twitterClientID: process.env.TWITTER_CLIENT_ID,
 	twitterSecretKey: process.env.TWITTER_SECRET_KEY,
-	cookieKey: process.env.COOKIE_KEY
+	cookieKey: process.env.COOKIE_KEY,
+	redisURL: process.env.REDIS_URL,
 }
