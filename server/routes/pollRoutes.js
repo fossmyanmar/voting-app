@@ -21,7 +21,7 @@ const findData = (req, res) => {
 
 	let totalCount
 
-	const count = findQuery.count().then(result => {
+	const count = findQuery.countDocuments().then(result => {
 		totalCount = result
 	})
 
@@ -34,14 +34,14 @@ const findData = (req, res) => {
 		.then(polls =>
 			polls.map(poll => ({
 				id: poll._id,
-				pollQuestion: poll.pollQuestion
+				pollQuestion: poll.pollQuestion,
 			}))
 		)
 
 	Promise.all([count, data]).then(result => {
 		res.json({
 			count: totalCount,
-			polls: result[1]
+			polls: result[1],
 		})
 	})
 }
@@ -49,7 +49,7 @@ const findData = (req, res) => {
 poll.post('/submit', requireLogin, (req, res) => {
 	Poll.findOne({
 		userID: req.body.userID,
-		pollQuestion: req.body.pollQuestion
+		pollQuestion: req.body.pollQuestion,
 	}).then(foundPoll => {
 		if (foundPoll) {
 			res.status(406).send('failed')
@@ -73,18 +73,18 @@ poll.put('/vote', (req, res) => {
 			{
 				_id: req.body.id,
 				'pollOptions.name': { $ne: req.body.customSelection },
-				IP: { $ne: req.clientIp }
+				IP: { $ne: req.clientIp },
 			},
 			{
 				$addToSet: {
 					pollOptions: {
 						name: req.body.customSelection,
-						quantity: 1
-					}
+						quantity: 1,
+					},
 				},
 				$push: {
-					IP: req.clientIP
-				}
+					IP: req.clientIP,
+				},
 			},
 			{ new: true }
 		)
@@ -97,15 +97,15 @@ poll.put('/vote', (req, res) => {
 			{
 				_id: req.body.id,
 				pollOptions: {
-					$elemMatch: { name: req.body.selection }
+					$elemMatch: { name: req.body.selection },
 				},
-				IP: { $ne: req.clientIp }
+				IP: { $ne: req.clientIp },
 			},
 			{
 				$inc: { 'pollOptions.$.quantity': 1 },
 				$push: {
-					IP: req.clientIp
-				}
+					IP: req.clientIp,
+				},
 			},
 			{ new: true }
 		)

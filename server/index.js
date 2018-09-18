@@ -13,7 +13,10 @@ const poll = require('./routes/pollRoutes')
 require('./models/User')
 require('./services/passport')
 
-mongoose.connect(keys.mongoURI, { useMongoClient: true })
+mongoose.connect(
+	keys.mongoURI,
+	{ useNewUrlParser: true }
+)
 mongoose.Promise = global.Promise
 
 const app = express()
@@ -25,7 +28,7 @@ app.use(
 	session({
 		secret: keys.cookieKey,
 		saveUninitialized: true,
-		resave: true
+		resave: true,
 	})
 )
 
