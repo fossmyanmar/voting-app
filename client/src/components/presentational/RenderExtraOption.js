@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, InputGroup, InputGroupButton, Button } from 'reactstrap'
+import { Input, InputGroup, InputGroupAddon, Button } from 'reactstrap'
 import FontAwesome from 'react-fontawesome'
 
 export default ({
@@ -8,7 +8,7 @@ export default ({
 	deleteOption,
 	index,
 	placeholder,
-	meta: { error, touched }
+	meta: { error, touched },
 }) => {
 	let valid
 	touched ? (error ? (valid = false) : (valid = true)) : (valid = null)
@@ -22,14 +22,14 @@ export default ({
 					valid={valid}
 					placeholder={placeholder}
 				/>
-				<InputGroupButton>
+				<InputGroupAddon addonType="append">
 					<Button
 						color="danger"
 						outline
 						onClick={() => deleteOption.remove(index)}>
 						<FontAwesome size="2x" name="close" />
 					</Button>
-				</InputGroupButton>
+				</InputGroupAddon>
 			</InputGroup>
 			{touched && error && <div className="error">{error}</div>}
 		</div>
