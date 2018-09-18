@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const bodyParser = require('body-parser')
 const requestIP = require('request-ip')
 
@@ -24,13 +25,18 @@ const app = express()
 app.use(bodyParser.json())
 app.use(requestIP.mw())
 
-app.use(
-	session({
-		secret: keys.cookieKey,
-		saveUninitialized: true,
-		resave: true,
+const sessionInfo = { secret: keys.cookieKey }
+
+if (process.env.NODE_ENV === 'production') {
+	sessionInfo.store = new MongoStore({
+		mongooseConnection: mongoose.connection,
 	})
-)
+} else {
+	sessionInfo.saveUninitialized = true
+	sessionInfo.resave = true
+}
+
+app.use(session(sessionInfo))
 
 app.use(passport.initialize())
 app.use(passport.session())

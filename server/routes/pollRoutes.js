@@ -4,7 +4,7 @@ const keys = require('../config/keys')
 const redis = require('redis')
 const redisUrl = keys.redisURL
 const redisClient = redis.createClient(redisUrl)
-// const redisExpiryTime = 60 // in seconds
+const redisExpiryTime = 60 // in seconds
 const util = require('util')
 redisClient.hget = util.promisify(redisClient.hget)
 
@@ -76,20 +76,24 @@ const findData = (req, res) => {
 
 			Promise.all([count, data]).then(result => {
 				console.log('sent from server')
-				redisClient.hset(
-					redisCacheKey,
-					'count',
-					totalCount
-					// 'EX',
-					// redisExpiryTime
-				)
-				redisClient.hset(
+
+				// Heroku's free tier doesn't provide data persistence for Redis.
+				// So only pass in expiry arguments when app isn't in production
+				const redisCountArgsArr = [redisCacheKey, 'count', totalCount]
+				const redisPollArgsArr = [
 					redisCacheKey,
 					'polls',
-					JSON.stringify(result[1].map(o => JSON.stringify(o)))
-					// 'EX',
-					// redisExpiryTime
-				)
+					JSON.stringify(result[1].map(o => JSON.stringify(o))),
+				]
+				if (process.env.NODE_ENV !== 'production') {
+					const expireArr = ['EX', redisExpiryTime]
+					redisClient.hset(...redisCountArgsArr.concat(expireArr))
+					redisClient.hset(...redisPollArgsArr.concat(expireArr))
+				} else {
+					redisClient.hset(...redisCountArgsArr)
+					redisClient.hset(...redisPollArgsArr)
+				}
+
 				res.json({
 					count: totalCount,
 					polls: result[1],
