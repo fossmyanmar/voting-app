@@ -3,7 +3,7 @@ const express = require('express')
 const redis = require('redis')
 const redisUrl = 'redis://127.0.0.1:6379'
 const redisClient = redis.createClient(redisUrl)
-const redisExpiryTime = 86400 //Num of secs in a day
+const redisExpiryTime = 60 // in seconds
 const util = require('util')
 redisClient.hget = util.promisify(redisClient.hget)
 
