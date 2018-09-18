@@ -1,51 +1,103 @@
 const express = require('express')
 
+const redis = require('redis')
+const redisUrl = 'redis://127.0.0.1:6379'
+const redisClient = redis.createClient(redisUrl)
+const redisExpiryTime = 86400 //Num of secs in a day
+const util = require('util')
+redisClient.hget = util.promisify(redisClient.hget)
+
 const requireLogin = require('../middlewares/requireLogin')
 const Poll = require('../models/Poll')
 
 const poll = express.Router()
 
+// Helper function for getting the Mongoose query depending on whether user is getting personal polls or all polls
 const determineQuery = req =>
 	req.path === '/all_polls'
 		? Poll.find({})
 		: Poll.find({ userID: req.params.id })
 
+// Request handler for getting polls
 const findData = (req, res) => {
-	let findQuery
-
-	findQuery = determineQuery(req)
+	let findQuery = determineQuery(req)
 
 	const offset = req.query.offset ? parseInt(req.query.offset, 10) : 0
 	let limit = req.query.limit ? parseInt(req.query.limit, 10) : 20
 	if (limit > 50) limit = 50
 
-	let totalCount
-
-	const count = findQuery.countDocuments().then(result => {
-		totalCount = result
+	const redisCacheKey = JSON.stringify({
+		...findQuery
+			.sort({ _id: -1 })
+			.skip(offset)
+			.limit(limit)
+			.getOptions(),
+		path: req.path,
 	})
 
-	findQuery = determineQuery(req)
+	const getCountFromRedis = redisClient.hget(redisCacheKey, 'polls')
+	const getPollsFromRedis = redisClient.hget(redisCacheKey, 'count')
 
-	const data = findQuery
-		.sort({ _id: -1 })
-		.skip(offset)
-		.limit(limit)
-		.then(polls =>
-			polls.map(poll => ({
-				id: poll._id,
-				pollQuestion: poll.pollQuestion,
-			}))
-		)
-
-	Promise.all([count, data]).then(result => {
-		res.json({
-			count: totalCount,
-			polls: result[1],
+	Promise.all([getCountFromRedis, getPollsFromRedis])
+		.then(result => {
+			if (result[0]) {
+				console.log('sent from cache')
+				const parsedPolls = JSON.parse(result[0]).map(o => JSON.parse(o))
+				res.json({
+					count: result[1],
+					polls: parsedPolls,
+				})
+			} else {
+				return Promise.reject()
+			}
 		})
-	})
+		.catch(() => {
+			let totalCount
+
+			findQuery = determineQuery(req)
+
+			const count = findQuery.countDocuments().then(result => {
+				totalCount = result
+			})
+
+			findQuery = determineQuery(req)
+
+			const data = findQuery
+				.sort({ _id: -1 })
+				.skip(offset)
+				.limit(limit)
+				.then(polls =>
+					polls.map(poll => ({
+						id: poll._id,
+						pollQuestion: poll.pollQuestion,
+					}))
+				)
+
+			Promise.all([count, data]).then(result => {
+				console.log('sent from server')
+				redisClient.hset(
+					redisCacheKey,
+					'count',
+					totalCount,
+					'EX',
+					redisExpiryTime
+				)
+				redisClient.hset(
+					redisCacheKey,
+					'polls',
+					JSON.stringify(result[1].map(o => JSON.stringify(o))),
+					'EX',
+					redisExpiryTime
+				)
+				res.json({
+					count: totalCount,
+					polls: result[1],
+				})
+			})
+		})
 }
 
+// Submit poll
 poll.post('/submit', requireLogin, (req, res) => {
 	Poll.findOne({
 		userID: req.body.userID,
@@ -54,6 +106,7 @@ poll.post('/submit', requireLogin, (req, res) => {
 		if (foundPoll) {
 			res.status(406).send('failed')
 		} else {
+			redisClient.flushall()
 			new Poll(req.body).save().then(savedPoll => res.send(savedPoll._id))
 		}
 	})
@@ -117,6 +170,7 @@ poll.put('/vote', (req, res) => {
 })
 
 poll.delete('/delete/:id', requireLogin, (req, res) => {
+	redisClient.flushall()
 	Poll.findByIdAndRemove(req.params.id).then(deletedPoll => {
 		if (deletedPoll) res.send({ status: 'ok' })
 		else res.send({ status: 'Warning: poll not found' })

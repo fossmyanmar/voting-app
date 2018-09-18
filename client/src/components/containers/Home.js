@@ -9,7 +9,7 @@ import RenderPollsList from '../presentational/RenderPollsList'
 
 class Home extends Component {
 	state = {
-		pageSize: 5
+		pageSize: 5,
 	}
 
 	onPageChange = page => {
@@ -70,4 +70,7 @@ class Home extends Component {
 
 const mapStateToProps = ({ poll }) => ({ poll })
 
-export default connect(mapStateToProps, actions)(Home)
+export default connect(
+	mapStateToProps,
+	actions
+)(Home)

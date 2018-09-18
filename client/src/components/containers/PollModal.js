@@ -11,7 +11,7 @@ import {
 	ModalBody,
 	ModalFooter,
 	Button,
-	Form
+	Form,
 } from 'reactstrap'
 
 import RenderInput from '../presentational/RenderInput'
@@ -25,7 +25,7 @@ const PollModal = ({
 	reset,
 	submitting,
 	auth,
-	history
+	history,
 }) => {
 	const cancel = () => {
 		reset()
@@ -39,9 +39,9 @@ const PollModal = ({
 			pollOptions: options.map(option => {
 				return {
 					name: option,
-					quantity: 0
+					quantity: 0,
 				}
-			})
+			}),
 		}
 		axios
 			.post('/poll/submit', poll)
@@ -124,5 +124,10 @@ const mapStateToProps = ({ form, auth }) => ({ form, auth })
 
 export default reduxForm({
 	form: 'add_poll',
-	validate
-})(connect(mapStateToProps, actions)(withRouter(PollModal)))
+	validate,
+})(
+	connect(
+		mapStateToProps,
+		actions
+	)(withRouter(PollModal))
+)
