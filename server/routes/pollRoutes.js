@@ -4,7 +4,7 @@ const keys = require('../config/keys')
 const redis = require('redis')
 const redisUrl = keys.redisURL
 const redisClient = redis.createClient(redisUrl)
-const redisExpiryTime = 60 // in seconds
+// const redisExpiryTime = 60 // in seconds
 const util = require('util')
 redisClient.hget = util.promisify(redisClient.hget)
 
@@ -79,16 +79,16 @@ const findData = (req, res) => {
 				redisClient.hset(
 					redisCacheKey,
 					'count',
-					totalCount,
-					'EX',
-					redisExpiryTime
+					totalCount
+					// 'EX',
+					// redisExpiryTime
 				)
 				redisClient.hset(
 					redisCacheKey,
 					'polls',
-					JSON.stringify(result[1].map(o => JSON.stringify(o))),
-					'EX',
-					redisExpiryTime
+					JSON.stringify(result[1].map(o => JSON.stringify(o)))
+					// 'EX',
+					// redisExpiryTime
 				)
 				res.json({
 					count: totalCount,
