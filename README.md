@@ -70,6 +70,8 @@ module.exports = {
 }
 ```
 
+You will also need a Redis server running on port 6379.
+
 ## Meta
 
 Edward Hong – [@EdwardHong527](https://twitter.com/EdwardHong527)
