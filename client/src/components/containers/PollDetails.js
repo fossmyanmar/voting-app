@@ -15,7 +15,7 @@ import DeleteModal from '../presentational/DeleteModal'
 import Loader from '../presentational/Loader'
 
 class PollDetails extends Component {
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getPoll(this.props.match.params.id)
 	}
 
@@ -102,7 +102,7 @@ class PollDetails extends Component {
 										outline
 										color="danger">
 										Delete
-									</Button>
+									</Button>,
 								]}
 						</ButtonGroup>
 					</Form>
@@ -144,10 +144,15 @@ const mapStateToProps = ({ poll, form, auth, toggle }) => ({
 	poll,
 	form,
 	auth,
-	toggle
+	toggle,
 })
 
 export default reduxForm({
 	form: 'vote',
-	validate
-})(connect(mapStateToProps, actions)(withRouter(PollDetails)))
+	validate,
+})(
+	connect(
+		mapStateToProps,
+		actions
+	)(withRouter(PollDetails))
+)

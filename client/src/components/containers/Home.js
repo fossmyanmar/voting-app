@@ -17,7 +17,7 @@ class Home extends Component {
 		this.props.allPolls(this.state.pageSize, (page - 1) * this.state.pageSize)
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.props.allPolls(this.state.pageSize, 0)
 	}
 

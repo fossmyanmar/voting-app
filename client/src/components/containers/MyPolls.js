@@ -9,10 +9,10 @@ import RenderPollsList from '../presentational/RenderPollsList'
 
 class MyPolls extends Component {
 	state = {
-		pageSize: 5
+		pageSize: 5,
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		if (this.props.poll && this.props.poll.constructor !== Array) {
 			this.props.getMyPolls(this.props.auth._id, this.state.pageSize, 0)
 		}
@@ -68,4 +68,7 @@ class MyPolls extends Component {
 
 const mapStateToProps = ({ auth, poll }) => ({ auth, poll })
 
-export default connect(mapStateToProps, actions)(MyPolls)
+export default connect(
+	mapStateToProps,
+	actions
+)(MyPolls)
