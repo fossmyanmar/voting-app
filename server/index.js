@@ -16,7 +16,7 @@ require('./services/passport')
 
 mongoose.connect(
 	keys.mongoURI,
-	{ useNewUrlParser: true }
+	{ useCreateIndex: true, useFindAndModify: false, useNewUrlParser: true }
 )
 mongoose.Promise = global.Promise
 
